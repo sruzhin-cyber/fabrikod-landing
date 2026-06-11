@@ -60,3 +60,9 @@
 @media(max-width:900px){.loss-calculator{grid-template-columns:1fr}.loss-calculator__result{min-height:520px}.before-after__heading{align-items:flex-start;flex-direction:column;gap:14px}}
 @media(max-width:760px){.loss-calculator__data,.loss-calculator__result{padding:24px}.loss-calculator__result{min-height:440px}.loss-number strong{font-size:43px}.loss-number:last-child strong{font-size:34px}.before-after{padding:20px}.before-after__grid{grid-template-columns:1fr}.before-after__heading h3{font-size:25px}}
 @media(max-width:480px){.loss-inputs label{font-size:11px}.loss-inputs label>span{font-size:14px}.loss-number strong{font-size:36px}.loss-number:last-child strong{font-size:29px}.state-card>div{align-items:flex-start;flex-direction:column;gap:5px}.state-card strong{text-align:left}}
+
+/* Header authentication actions */
+.header__actions{margin-left:18px}.header__actions .header__login{min-width:auto;padding:0 10px;box-shadow:none}.header .nav{gap:18px}
+.nav__auth{display:none}
+@media(max-width:1120px){.header__actions{gap:5px;margin-left:10px}.header__actions .button{padding:0 9px;font-size:11px}.header .nav{gap:10px}}
+@media(max-width:760px){.nav.is-open .nav__auth{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;padding-top:16px;border-top:1px solid var(--line)}.nav.is-open .nav__auth a{padding:0 12px}}
