@@ -73,3 +73,5 @@
 .config-card .product-shape span,.hero-product-shell .shell-object:before,.hero-product-shell .shell-object span{border-color:rgba(240,82,101,.72)}
 .price-mini span,.state-card--after>span{background:rgba(240,82,101,.18)}
 .video-card__screen>button{background:rgba(240,82,101,.96)}
+.logo__accent:after{background:linear-gradient(90deg,var(--accent-bright),var(--accent-bright2));box-shadow:0 1px 5px rgba(240,82,101,.28)}
+.social-card--vk .social-card__icon{background:#2787f5;color:#fff}.social-card--vk>span{color:#2787f5}
