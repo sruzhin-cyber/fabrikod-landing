@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="фабрикод — автоматизация расчета и подготовки заказов для производственных компаний.">
+  <title>фабрикод — автоматизация производств</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Фабрикод, на главную">
+        <span>фабри<span class="logo__accent">к</span>од</span>
+      </a>
+      <nav class="nav" id="main-nav" aria-label="Основная навигация">
+        <a href="#features">Возможности</a><a href="#audience">Отрасли</a><a href="#cases">Кейсы</a><a href="#pricing">Цены</a><a href="#blog">Блог</a>
+      </nav>
+      <div class="header__actions"><a class="button button--small" href="#calculator">Рассчитать выгоду</a><a class="button button--small button--secondary" href="#demo">Обсудить проект</a></div>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero__glow"></div>
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <div class="eyebrow"><span></span> Больше пропускная способность без роста штата</div>
+          <h1><span>Производите изделия под заказ?</span> <em>Больше заказов. Меньше затрат.</em></h1>
+          <p class="hero__lead">фабрикод соединяет продажи и производство в единый цифровой процесс.</p>
+          <div class="button-row"><a class="button" href="#calculator">Рассчитать выгоду <span>↗</span></a><a class="button button--secondary" href="#demo">Обсудить проект</a></div>
+          <p class="microcopy"><span>✓</span> Покажем работу системы на одном из ваших изделий.</p>
+        </div>
+        <div class="hero-visual reveal reveal--delay">
+          <!-- Replace this product mockup with feature-configurator.webp when the asset is available. -->
+          <div class="hero-product-shell feature-configurator-media">
+            <div class="product-shell__bar"><span><i></i><i></i><i></i></span><b>фабрикод / заказ #FB-2048</b><em>AK</em></div>
+            <div class="product-shell__nav"><strong>ф</strong><i></i><i></i><i></i><i></i></div>
+            <div class="product-shell__workspace"><small>ЗАКАЗ #FB-2048 · РАССЧИТАН АВТОМАТИЧЕСКИ</small><div class="shell-object"><span></span></div><div class="shell-axis">1200 × 600 × 40 мм</div><div class="owner-result"><span><b>2 мин</b><small>на расчет</small></span><span><b>0</b><small>ручных операций</small></span></div></div>
+          </div>
+          <div class="config-card">
+            <div class="config-card__top"><div><small>КОНФИГУРАТОР</small><strong>Панель фасадная</strong></div><span>•••</span></div>
+            <div class="progress-line"><span class="active">Заявка</span><i></i><span class="active">Расчет</span><i></i><span>Производство</span></div>
+            <div class="product-preview"><div class="product-shape"><span></span></div><div class="dimensions"><b>1200</b><b>600</b></div></div>
+            <div class="params"><div><small>Материал</small><strong>Алюминий 2 мм</strong></div><div><small>Покрытие</small><strong>RAL 9005</strong></div></div>
+            <div class="price-row"><div><small>Стоимость заказа</small><strong>148 500 ₽</strong></div><span class="status"><i></i> Готово к производству</span></div>
+            <div class="file-row"><span>DXF</span><span>NC</span><span>СПЕЦИФИКАЦИЯ</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section platform-parts" id="platform">
+      <div class="container">
+        <div class="section-title section-title--center reveal"><p class="kicker">Один связанный процесс</p><h2>Что такое фабрикод</h2><p>IT-сервис для автоматизации производства изделий под заказ.</p><div class="platform-intro">фабрикод объединяет клиента, менеджера и производство в единую систему работы с заказами.</div></div>
+        <div class="platform-grid">
+          <article class="platform-card reveal">
+            <div class="platform-card__label"><span>01</span> Для клиента</div>
+            <!-- Replace with feature-configurator.webp when available. -->
+            <div class="platform-mockup platform-mockup--configurator feature-configurator-media"><div class="mock-sidebar"><i></i><i></i><i></i></div><div class="mock-product"><span></span><small>1200 × 600</small></div><b>148 500 ₽</b></div>
+            <h3>Конфигуратор изделия</h3><p>Клиент выбирает параметры, видит результат и получает стоимость.</p>
+          </article>
+          <article class="platform-card reveal">
+            <div class="platform-card__label"><span>02</span> Для бизнеса</div>
+            <!-- Replace with dashboard-image-v2.webp when available. -->
+            <div class="platform-mockup platform-mockup--dashboard dashboard-media"><div class="dashboard-line"><i></i><i></i><i></i><i></i></div><div class="dashboard-chart"><span></span><span></span><span></span><span></span><span></span></div><div class="dashboard-orders"><i></i><i></i><i></i></div></div>
+            <h3>Панель управления</h3><p>Все модели, расчеты, документы, аналитика и процессы находятся в одном месте.</p>
+          </article>
+          <article class="platform-card reveal">
+            <div class="platform-card__label"><span>03</span> Для производства</div>
+            <!-- Replace with feature-fabrication.webp when available. -->
+            <div class="platform-mockup platform-mockup--files feature-fabrication-media"><div class="file-sheet"><strong>DXF</strong><i></i></div><div class="file-sheet"><strong>NC</strong><i></i></div><div class="file-sheet"><strong>SPEC</strong><i></i></div></div>
+            <h3>Готовые данные для работы</h3><p>Спецификации, чертежи и файлы для станков создаются автоматически.</p>
+          </article>
+        </div>
+        <div class="platform-flow reveal"><span>Конфигуратор</span><i>→</i><span>фабрикод</span><i>→</i><span>Производство</span></div>
+      </div>
+    </section>
+
+    <section class="section audience-cards" id="audience">
+      <div class="container">
+        <div class="section-heading reveal"><span class="section-number">01</span><div><p class="kicker">Для кого</p><h2>Для каких компаний подходит фабрикод</h2><p>Если изделие имеет параметры, его можно автоматизировать.</p></div></div>
+        <div class="audience-grid">
+          <article class="audience-card reveal"><span>01</span><i>▤</i><strong>Корпусная мебель</strong></article><article class="audience-card reveal"><span>02</span><i>⌑</i><strong>Кухни</strong></article><article class="audience-card reveal"><span>03</span><i>▥</i><strong>Шкафы-купе</strong></article><article class="audience-card reveal"><span>04</span><i>▯</i><strong>Двери</strong></article><article class="audience-card reveal"><span>05</span><i>⌁</i><strong>Лестницы</strong></article><article class="audience-card reveal"><span>06</span><i>◇</i><strong>Металлоконструкции</strong></article><article class="audience-card reveal"><span>07</span><i>◫</i><strong>Изделия из дерева</strong></article><article class="audience-card reveal"><span>08</span><i>⌗</i><strong>Изделия из металла</strong></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section market">
+      <div class="container">
+        <div class="section-heading reveal"><span class="section-number">01</span><div><p class="kicker">Новая реальность</p><h2>Зарабатывать стало сложнее</h2><p>Клиентов меньше, конкуренция выше, маржа ниже. В таких условиях каждая потерянная заявка стоит дороже, чем раньше.</p></div></div>
+        <div class="market-grid">
+          <article class="metric-card reveal"><span>↘</span><strong>Рынок<br>сжимается</strong><div class="spark spark--down"></div></article>
+          <article class="metric-card reveal"><span>−</span><strong>Маржа<br>падает</strong><div class="spark spark--low"></div></article>
+          <article class="metric-card reveal"><span>⌛</span><strong>Клиенты выбирают<br>дольше</strong><div class="metric-card__value">x2.4</div></article>
+          <article class="metric-card metric-card--accent reveal"><span>→</span><strong>Конкуренты отвечают<br>быстрее</strong><div class="metric-card__value">02:14</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section problems">
+      <div class="container">
+        <div class="section-title reveal"><p class="kicker">Точки потерь</p><h2>Там, где теряется скорость —<br>снижаются заказы</h2></div>
+        <div class="problem-grid">
+          <article class="problem-card problem-card--wide reveal"><div class="icon-box">◷</div><span>01</span><h3>Медленный расчет</h3><p>Клиент ждет ответ часами или днями.</p><div class="time-visual"><b>02:48:16</b><small>время подготовки</small></div></article>
+          <article class="problem-card reveal"><div class="icon-box">×</div><span>02</span><h3>Ошибки в заказах</h3><p>Неверные размеры, материалы и комплектация.</p></article>
+          <article class="problem-card reveal"><div class="icon-box">◇</div><span>03</span><h3>Зависимость от специалистов</h3><p>Если человек занят или заболел, работа встает.</p></article>
+          <article class="problem-card reveal"><div class="icon-box">⌁</div><span>04</span><h3>Перегрузка инженеров</h3><p>Большая часть расчетов не превращается в заказ.</p></article>
+          <article class="problem-card problem-card--dark reveal"><div class="icon-box">↗</div><span>05</span><h3>Сложно масштабироваться</h3><p>Каждый новый менеджер требует обучения.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cost" id="calculator">
+      <div class="container">
+        <div class="section-title reveal"><p class="kicker">Скрытые затраты</p><h2>Сколько стоит подготовка ваших заказов?</h2><p>Большая часть расчетов никогда не превращается в продажи. Но компания оплачивает эту работу каждый день.</p></div>
+        <div class="loss-calculator reveal">
+          <div class="loss-calculator__data">
+            <div class="loss-inputs">
+              <div class="dashboard__head"><div><span class="dot"></span> Входные данные</div><small>За месяц</small></div>
+              <label>Заявок в месяц <span id="requests-value">100</span><input id="requests" type="range" min="10" max="1000" step="10" value="100"></label>
+              <label>Конверсия в заказ <span id="conversion-value">20%</span><input id="conversion" type="range" min="1" max="80" value="20"></label>
+              <label>Стоимость подготовки одной заявки <span id="cost-value">13 500 ₽</span><input id="request-cost" type="range" min="500" max="50000" step="500" value="13500"></label>
+            </div>
+            <div class="loss-summary">
+              <div><span>Заявок в месяц</span><strong id="summary-requests">100</strong></div>
+              <div><span>Конверсия</span><strong id="summary-conversion">20%</strong></div>
+              <div><span>Получено заказов</span><strong id="won-orders">20</strong></div>
+              <div><span>Не выиграно заявок</span><strong id="lost-orders">80</strong></div>
+              <div><span>Стоимость подготовки заявки</span><strong id="summary-cost">13 500 ₽</strong></div>
+            </div>
+          </div>
+          <div class="loss-calculator__result">
+            <small>НЕЗАМЕТНЫЕ РАСХОДЫ</small>
+            <div class="loss-number loss-number--main"><strong id="monthly-cost">1 080 000 ₽</strong><p>Тратите ежемесячно на подготовку заявок,<br>которые не становятся заказами.</p></div>
+            <div class="loss-number"><strong id="yearly-cost">12 960 000 ₽</strong><p>Тратите ежегодно.</p></div>
+          </div>
+        </div>
+        <div class="before-after reveal">
+          <div class="before-after__heading"><p class="kicker">Изменение процесса</p><h3>Что меняется после внедрения фабрикод</h3></div>
+          <div class="before-after__grid">
+            <article class="state-card state-card--before"><span>ДО</span><div><small>Подготовка заказа</small><strong>Несколько часов</strong></div><div><small>Расчеты</small><strong>Вручную</strong></div><div><small>Ошибки</small><strong>Возможны</strong></div><div><small>Пропускная способность</small><strong>Ограничена командой</strong></div></article>
+            <article class="state-card state-card--after"><span>ПОСЛЕ</span><div><small>Подготовка заказа</small><strong>Минуты</strong></div><div><small>Расчеты</small><strong>Автоматически</strong></div><div><small>Ошибки</small><strong>Минимизированы</strong></div><div><small>Пропускная способность</small><strong>До 10 раз выше</strong></div></article>
+          </div>
+        </div>
+        <p class="dashboard-note reveal">Расчет примерный. На встрече мы покажем экономику именно для вашего производства и ваших изделий.</p>
+      </div>
+    </section>
+
+    <section class="section solution">
+      <div class="container">
+        <div class="section-title section-title--center reveal"><p class="kicker">Единый процесс</p><h2>Продажи и производство больше не живут отдельно</h2><p>Клиент выбирает параметры изделия. фабрикод автоматически рассчитывает стоимость, готовит документы и передает данные в производство.</p></div>
+        <div class="order-pipeline reveal"><article><span>01</span><i>⌁</i><strong>Параметры</strong></article><b>→</b><article><span>02</span><i>₽</i><strong>Стоимость</strong></article><b>→</b><article><span>03</span><i>≡</i><strong>Спецификация</strong></article><b>→</b><article><span>04</span><i>NC</i><strong>Файлы для станка</strong></article><b>→</b><article class="pipeline-final"><span>05</span><i>✓</i><strong>Производство</strong></article></div>
+      </div>
+    </section>
+
+    <section class="section benefits">
+      <div class="container">
+        <div class="section-heading reveal"><span class="section-number">02</span><div><p class="kicker">Результат для бизнеса</p><h2>Больше пропускная способность.<br>Выше прибыль.</h2></div></div>
+        <div class="benefit-grid">
+          <article class="benefit-card benefit-card--orange reveal"><span>01</span><div class="big-icon">↗</div><h3>Больше заказов</h3><p>Быстрее расчет. Выше конверсия.</p></article>
+          <article class="benefit-card reveal"><span>02</span><div class="big-icon">₽</div><h3>Меньше затрат</h3><p>Меньше ручной работы на каждую заявку.</p></article>
+          <article class="benefit-card reveal"><span>03</span><div class="big-icon">%</div><h3>Выше прибыльность</h3><p>Ниже себестоимость подготовки заказа.</p></article>
+          <article class="benefit-card reveal"><span>04</span><div class="big-icon">◎</div><h3>Меньше зависимость от сотрудников</h3><p>Правила и расчеты остаются в системе.</p></article>
+          <article class="benefit-card reveal"><span>05</span><div class="big-icon">×10</div><h3>Больше пропускная способность</h3><p>Больше заявок за то же время.</p></article>
+          <article class="benefit-card reveal"><span>06</span><div class="big-icon">＋</div><h3>Рост без увеличения штата</h3><p>Масштабируйте продажи без линейного найма.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product" id="features">
+      <div class="container">
+        <div class="section-title reveal"><p class="kicker">Платформа</p><h2>Возможности IT-сервиса фабрикод</h2></div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><div class="feature-visual configurator-mini"><div class="mini-panel"><i></i><i></i><i></i></div><div class="mini-shape"></div></div><span>01</span><h3>Конфигуратор изделий</h3><p>Клиент собирает свой вариант изделия без помощи менеджера.</p></article>
+          <article class="feature-card reveal"><div class="feature-visual price-mini"><small>СТОИМОСТЬ</small><strong>148 500 ₽</strong><span>+12 400</span></div><span>02</span><h3>Автоматический расчет стоимости</h3><p>Цена обновляется при каждом изменении параметров.</p></article>
+          <article class="feature-card reveal"><div class="feature-visual dashboard-feature"><div><span>Заказы</span><b>128</b></div><div><span>В работе</span><b>34</b></div><i></i><i></i><i></i></div><span>03</span><h3>Панель управления</h3><p>Модели, заказы, документы и аналитика находятся в одном месте.</p></article>
+          <article class="feature-card reveal"><div class="feature-visual files-mini"><i>DXF</i><i>NC</i><i>SPEC</i></div><span>04</span><h3>Производственные файлы</h3><p>DXF, NC, спецификации и данные для станков формируются автоматически.</p></article>
+          <article class="feature-card reveal"><div class="feature-visual model-catalog-mini"><div class="catalog-model">◇</div><div class="catalog-thumbs"><i></i><i></i><i></i></div></div><span>05</span><h3>Каталог 3D-моделей</h3><p>Готовые модели изделий собраны в одном месте и доступны для настройки.</p></article>
+          <article class="feature-card reveal"><div class="feature-visual integrations-mini"><i>1C</i><i>CRM</i><i>API</i><i>ERP</i></div><span>06</span><h3>Интеграции</h3><p>Подключение к сайту, CRM, ERP, 1С и внутренним системам.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section implementation" id="implementation">
+      <div class="container">
+        <div class="section-title reveal"><p class="kicker">Внедрение</p><h2>Запуск без сложного<br>IT-проекта</h2></div>
+        <div class="timeline reveal">
+          <article><span>01</span><div class="timeline-icon">◇</div><h3>Показываете изделие</h3></article><article><span>02</span><div class="timeline-icon">⌗</div><h3>Создаем цифровую модель</h3></article><article><span>03</span><div class="timeline-icon">⌁</div><h3>Настраиваем правила расчета</h3></article><article><span>04</span><div class="timeline-icon">⇄</div><h3>Подключаем производство</h3></article><article><span>05</span><div class="timeline-icon">▶</div><h3>Запускаем работу</h3></article>
+        </div>
+        <div class="speed-note reveal"><div class="speed-note__icon">⚡</div><div><small>СКОРОСТЬ ЗАПУСКА</small><strong>Первые результаты — через несколько недель, а не месяцев.</strong></div><span>2–4 НЕДЕЛИ</span></div>
+      </div>
+    </section>
+
+    <section class="section comparison" id="cases">
+      <div class="container">
+        <div class="section-title section-title--center reveal"><p class="kicker">Кейсы и результат</p><h2>Что меняется после внедрения</h2></div>
+        <div class="comparison-table reveal">
+          <div class="comparison-head"><span>До фабрикод</span><i></i><span>После фабрикод</span></div>
+          <div class="comparison-row"><span>Расчет <b>2 часа</b></span><i>→</i><span>Расчет <b>2 минуты</b></span></div>
+          <div class="comparison-row"><span>Инженер считает вручную</span><i>→</i><span>Система считает автоматически</span></div>
+          <div class="comparison-row"><span>Ошибки в спецификациях</span><i>→</i><span>Единые правила</span></div>
+          <div class="comparison-row"><span>Рост зависит от найма</span><i>→</i><span>Масштабирование без ограничений</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product-demo" id="product-demo">
+      <div class="container product-demo__grid">
+        <div class="product-demo__copy reveal"><p class="kicker">Система в работе</p><h2>От заявки до производства — в одном процессе</h2><p>Посмотрите, как фабрикод сокращает ручную работу и ускоряет подготовку заказа.</p><div class="demo-theses"><span><i>01</i>Меняется параметр — меняется цена.</span><span><i>02</i>Меняется изделие — обновляется спецификация.</span><span><i>03</i>Заказ готовится к производству автоматически.</span></div><a class="button" href="#demo">Обсудить проект <b>↗</b></a></div>
+        <!-- Replace this placeholder with configurator-tech/home_page/fabrikod-configurator.mp4 when the file is available. -->
+        <div class="video-card fabrikod-configurator-video reveal"><div class="video-card__bar"><span><i></i><i></i><i></i></span><small>СИСТЕМА ФАБРИКОД</small></div><div class="video-card__screen"><div class="video-card__product"><span></span></div><div class="video-card__controls"><i></i><i></i><i></i><b>148 500 ₽</b></div><button type="button" aria-label="Запустить видео">▶</button><p>Здесь будет видео работы системы</p></div></div>
+      </div>
+    </section>
+
+    <section class="section expertise" id="blog">
+      <div class="container">
+        <div class="expertise__top reveal"><div><p class="kicker">Экспертиза и сообщество</p><h2>Мы говорим на языке<br>B2B-производства</h2></div><div class="expertise__intro"><p>Пишем о том, как производству зарабатывать больше: ускорять расчет, снижать затраты и расти без увеличения штата.</p><a href="#socials">Выбрать площадку <span>↓</span></a></div></div>
+        <div class="editorial-list reveal">
+          <span><i>01</i><strong>Кейсы внедрения</strong><small>Реальные процессы, решения и цифры</small></span>
+          <span><i>02</i><strong>Разборы производств</strong><small>Где теряются деньги и точки роста</small></span>
+          <span><i>03</i><strong>Исследования рынка</strong><small>Данные для решений собственника</small></span>
+          <span><i>04</i><strong>Видео о технологиях</strong><small>Сложные процессы простым языком</small></span>
+        </div>
+        <div class="social-community" id="socials">
+          <div class="social-community__heading reveal"><div><p class="kicker">Подписывайтесь</p><h3>Практика автоматизации —<br>в удобном формате</h3></div><p>Без общих слов. Только идеи, кейсы и инструменты, которые помогают производству расти.</p></div>
+          <div class="social-grid reveal">
+            <!-- Replace placeholder hrefs with real social links when available. -->
+            <a class="social-card social-card--telegram" href="#socials"><div class="social-card__icon">TG</div><div><small>КОРОТКО И ПО ДЕЛУ</small><strong>Telegram</strong><p>Новые кейсы, цифры и разборы процессов.</p></div><span>Подписаться ↗</span></a>
+            <a class="social-card social-card--youtube" href="#socials"><div class="social-card__icon">▶</div><div><small>СМОТРЕТЬ</small><strong>YouTube</strong><p>Демонстрации системы и видео о производстве.</p></div><span>Перейти на канал ↗</span></a>
+            <a class="social-card social-card--max" href="#socials"><div class="social-card__icon">M</div><div><small>БЫТЬ НА СВЯЗИ</small><strong>MAX</strong><p>Новости фабрикод и полезные материалы.</p></div><span>Подписаться ↗</span></a>
+            <a class="social-card social-card--blog" href="#socials"><div class="social-card__icon">Б</div><div><small>ЧИТАТЬ ГЛУБЖЕ</small><strong>Блог</strong><p>Большие статьи, исследования и инструкции.</p></div><span>Читать блог ↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section security">
+      <div class="container security__grid">
+        <div class="security__copy reveal"><p class="kicker">Безопасность</p><h2>Ваши данные остаются<br>под защитой</h2><p>Архитектура фабрикод соответствует требованиям производственных компаний любого масштаба.</p><div class="shield-visual"><div>✓</div><span></span><i></i></div></div>
+        <div class="security-list reveal"><div><span>01</span><strong>Разграничение доступа</strong><i>✓</i></div><div><span>02</span><strong>Резервное копирование</strong><i>✓</i></div><div><span>03</span><strong>Безопасное хранение данных</strong><i>✓</i></div><div><span>04</span><strong>Облачное или корпоративное размещение</strong><i>✓</i></div><div><span>05</span><strong>Интеграция в контур предприятия</strong><i>✓</i></div></div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <div class="section-title section-title--center reveal"><p class="kicker">Тарифы</p><h2>Стоимость зависит от<br>сложности изделия</h2><p>Подбираем формат под задачу, объем производства и нужные интеграции.</p></div>
+        <div class="pricing-grid">
+          <article class="price-card reveal"><div><span>01</span><h3>Старт</h3><p>Для одного изделия и проверки гипотезы.</p></div><div class="price-card__tags"><i>1 изделие</i><i>Базовый расчет</i><i>Быстрый запуск</i></div><a class="button button--secondary" href="#demo">Обсудить проект</a></article>
+          <article class="price-card price-card--featured reveal"><div class="popular">ПОПУЛЯРНЫЙ</div><div><span>02</span><h3>Бизнес</h3><p>Для производства с отделом продаж и регулярными заказами.</p></div><div class="price-card__tags"><i>Несколько изделий</i><i>Каталог 3D-моделей</i><i>Интеграции</i></div><a class="button" href="#demo">Обсудить проект</a></article>
+          <article class="price-card reveal"><div><span>03</span><h3>Enterprise</h3><p>Для крупных компаний, дилерских сетей и сложных интеграций.</p></div><div class="price-card__tags"><i>Любой масштаб</i><i>Корпоративный контур</i><i>Персональная команда</i></div><a class="button button--secondary" href="#demo">Обсудить проект</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container faq__grid">
+        <div class="faq__title reveal"><p class="kicker">FAQ</p><h2>Частые<br>вопросы</h2><p>Не нашли ответ? Обсудим вашу задачу на короткой встрече.</p><a class="text-link" href="#demo">Задать вопрос <span>↗</span></a></div>
+        <div class="accordion reveal">
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>01</i>Сколько занимает внедрение?</span><b>+</b></button><div class="accordion__content"><p>Первые результаты обычно появляются через 2–4 недели. Срок зависит от сложности изделия и количества правил расчета.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>02</i>Можно ли подключить 1С?</span><b>+</b></button><div class="accordion__content"><p>Да. фабрикод интегрируется с 1С, CRM, ERP и другими системами через API.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>03</i>Подойдет ли фабрикод для моего изделия?</span><b>+</b></button><div class="accordion__content"><p>Если изделие можно описать параметрами и правилами, его процесс подготовки можно автоматизировать.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>04</i>Что делать, если у нас нет 3D-моделей?</span><b>+</b></button><div class="accordion__content"><p>Это не проблема. Для старта достаточно чертежей, спецификаций или примера изделия. Цифровую модель создадим мы.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>05</i>Можно ли работать через дилеров?</span><b>+</b></button><div class="accordion__content"><p>Да. Дилерский кабинет позволяет партнерам самостоятельно рассчитывать и оформлять заказы по вашим правилам.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>06</i>Можно ли разместить решение в нашем контуре?</span><b>+</b></button><div class="accordion__content"><p>Да. Доступно облачное и корпоративное размещение внутри инфраструктуры предприятия.</p></div></article>
+          <article class="accordion__item"><button type="button" aria-expanded="false"><span><i>07</i>Как рассчитывается стоимость?</span><b>+</b></button><div class="accordion__content"><p>Стоимость зависит от сложности изделия, количества правил, пользователей и состава интеграций.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta" id="demo">
+      <div class="final-cta__grid-bg"></div>
+      <div class="container final-cta__grid">
+        <div class="final-cta__copy reveal"><div class="eyebrow eyebrow--light"><span></span> Рост без увеличения штата</div><h2>Обсудим экономику вашего проекта</h2><p>Разберем текущий процесс, оценим затраты и покажем, где фабрикод даст измеримый эффект.</p><div class="demo-points"><span><i>01</i>Посчитаем затраты</span><span><i>02</i>Оценим выгоду</span><span><i>03</i>Составим план</span></div></div>
+        <form class="demo-form reveal" id="demo-form">
+          <div class="form-head"><span>ОБСУЖДЕНИЕ ПРОЕКТА</span><i>01 / 01</i></div>
+          <label>Имя<input type="text" name="name" placeholder="Как к вам обращаться" required></label>
+          <label>Телефон или Telegram<input type="text" name="contact" placeholder="+7 999 000-00-00 или @username" required></label>
+          <label>Компания<input type="text" name="company" placeholder="Название компании"></label>
+          <label>Что производите?<textarea name="product" placeholder="Коротко опишите изделие" rows="3"></textarea></label>
+          <button class="button" type="submit">Обсудить проект <span>↗</span></button>
+          <small>Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</small>
+          <div class="form-success" role="status"><span>✓</span><strong>Спасибо.</strong><p>Мы свяжемся с вами, обсудим задачу и оценим возможную выгоду.</p></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__top"><a class="logo logo--light" href="#top"><span>фабри<span class="logo__accent">к</span>од</span></a><p>Цифровая инфраструктура<br>для современного производства.</p><div class="footer__links"><a href="#features">Возможности</a><a href="#audience">Для кого</a><a href="#pricing">Цены</a><a href="#faq">FAQ</a></div></div>
+    <div class="container footer__bottom"><span>© 2026 фабрикод</span><span>Автоматизируем сложное</span><a href="#top">Наверх ↑</a></div>
+  </footer>
+</body>
+</html>
