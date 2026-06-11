@@ -145,9 +145,12 @@
         </div>
         <div class="before-after reveal">
           <div class="before-after__heading"><p class="kicker">Изменение процесса</p><h3>Что меняется после внедрения фабрикод</h3></div>
-          <div class="before-after__grid">
-            <article class="state-card state-card--before"><span>ДО</span><div><small>Подготовка заказа</small><strong>Несколько часов</strong></div><div><small>Расчеты</small><strong>Вручную</strong></div><div><small>Ошибки</small><strong>Возможны</strong></div><div><small>Пропускная способность</small><strong>Ограничена командой</strong></div></article>
-            <article class="state-card state-card--after"><span>ПОСЛЕ</span><div><small>Подготовка заказа</small><strong>Минуты</strong></div><div><small>Расчеты</small><strong>Автоматически</strong></div><div><small>Ошибки</small><strong>Минимизированы</strong></div><div><small>Пропускная способность</small><strong>До 10 раз выше</strong></div></article>
+          <div class="before-after__table" role="table" aria-label="Сравнение процесса до и после внедрения">
+            <div class="before-after__row before-after__row--head" role="row"><strong role="columnheader">Показатель</strong><span role="columnheader">До</span><span role="columnheader">После</span></div>
+            <div class="before-after__row" role="row"><strong role="rowheader">Подготовка заказа</strong><span>Несколько часов</span><span>Минуты</span></div>
+            <div class="before-after__row" role="row"><strong role="rowheader">Расчеты</strong><span>Вручную</span><span>Автоматически</span></div>
+            <div class="before-after__row" role="row"><strong role="rowheader">Ошибки</strong><span>Возможны</span><span>Минимизированы</span></div>
+            <div class="before-after__row" role="row"><strong role="rowheader">Пропускная способность</strong><span>Ограничена командой</span><span>До 10 раз выше</span></div>
           </div>
         </div>
         <p class="dashboard-note reveal">Расчет примерный. На встрече мы покажем экономику именно для вашего производства и ваших изделий.</p>
@@ -163,7 +166,7 @@
 
     <section class="section benefits">
       <div class="container">
-        <div class="section-heading reveal"><span class="section-number">02</span><div><p class="kicker">Результат для бизнеса</p><h2>Больше пропускная способность.<br>Выше прибыль.</h2></div></div>
+        <div class="section-heading reveal"><span class="section-number">02</span><div><p class="kicker">Что получает собственник</p><h2>Больше пропускная способность.<br>Выше прибыль.</h2></div></div>
         <div class="benefit-grid">
           <article class="benefit-card benefit-card--orange reveal"><span>01</span><div class="big-icon">↗</div><h3>Больше заказов</h3><p>Быстрее расчет. Выше конверсия.</p></article>
           <article class="benefit-card reveal"><span>02</span><div class="big-icon">₽</div><h3>Меньше затрат</h3><p>Меньше ручной работы на каждую заявку.</p></article>
@@ -308,11 +311,19 @@
         </form>
       </div>
     </section>
+
+    <section class="contact-map" id="contacts">
+      <div class="container contact-map__grid">
+        <div class="contact-map__copy reveal"><p class="kicker">Контакты</p><h2>Офис Fabrikod в Москве</h2><p>Пресненская набережная, д. 6, стр. 2, Башня «Империя», Москва, 123317, Россия</p><a class="text-link" href="https://yandex.ru/maps/?text=Пресненская%20набережная%2C%20д.%206%2C%20стр.%202%2C%20Башня%20Империя" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах <span>↗</span></a></div>
+        <div class="contact-map__frame reveal"><iframe src="https://yandex.ru/map-widget/v1/?text=Пресненская%20набережная%2C%20д.%206%2C%20стр.%202%2C%20Башня%20Империя%2C%20Москва&amp;z=16" title="Офис Fabrikod на Яндекс Картах" loading="lazy" allowfullscreen></iframe></div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer__top"><a class="logo logo--light" href="#top"><span>фабри<span class="logo__accent">к</span>од</span></a><p>Цифровая инфраструктура<br>для современного производства.</p><div class="footer__links"><a href="#features">Возможности</a><a href="#audience">Для кого</a><a href="#pricing">Цены</a><a href="#faq">FAQ</a></div></div>
-    <div class="container footer__bottom"><span>© 2026 фабрикод</span><span>Автоматизируем сложное</span><a href="#top">Наверх ↑</a></div>
+    <div class="container footer__top"><a class="logo logo--light" href="#top"><span>фабри<span class="logo__accent">к</span>од</span></a><p>Цифровая инфраструктура<br>для современного производства.</p><div class="footer__links"><a href="#features">Возможности</a><a href="#audience">Для кого</a><a href="#pricing">Цены</a><a href="#contacts">Контакты</a></div></div>
+    <div class="container footer__legal"><strong>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ФАБРИКОД ИНЖИНИРИНГ"</strong><span>ИНН: 9703248241</span><span>ОГРН: 1027700067328</span></div>
+    <div class="container footer__bottom"><span>Все права защищены</span><span>2026</span><a href="#top">Наверх ↑</a></div>
   </footer>
 </body>
 </html>
