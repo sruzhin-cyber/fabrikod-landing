@@ -98,11 +98,6 @@
 @media(max-width:760px){.before-after__heading{align-items:flex-start}.before-after__row{grid-template-columns:1fr 1fr 1fr}.before-after__row>*{padding:15px 11px;font-size:12px}.before-after__row>strong{font-size:11px}.contact-map{padding:76px 0}.contact-map__frame{height:340px}.footer__legal{flex-direction:column;gap:6px}.footer__legal strong{font-size:10px}}
 @media(max-width:480px){.before-after{padding:16px}.before-after__row>*{padding:13px 8px;font-size:10px}.before-after__row>strong{font-size:10px}.before-after__row--head>*{font-size:8px}.contact-map__frame{height:300px}}
 
-/* Hero industry cues */
-.hero__lead{margin-bottom:20px}.hero-industries{margin-bottom:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.hero-industries>span{min-height:54px;padding:8px 10px;display:flex;align-items:center;gap:9px;border:1px solid rgba(31,35,41,.09);border-radius:13px;background:rgba(255,255,255,.58);color:#626b75;backdrop-filter:blur(8px);transition:.25s}.hero-industries>span:hover{border-color:rgba(180,35,53,.28);background:#fff;transform:translateY(-2px)}.hero-industries i{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border:1px solid rgba(180,35,53,.16);border-radius:9px;background:linear-gradient(135deg,rgba(180,35,53,.06),rgba(92,16,32,.1));color:var(--orange);font-size:14px;font-style:normal}.hero-industries b{font-size:10px;font-weight:750;letter-spacing:.01em}
-@media(max-width:760px){.hero-industries{grid-template-columns:repeat(2,1fr);margin-bottom:25px}.hero-industries>span{min-height:50px}}
-@media(max-width:480px){.hero-industries{gap:6px}.hero-industries>span{padding:7px 8px}.hero-industries i{width:27px;height:27px;flex-basis:27px}.hero-industries b{font-size:9px}}
-
 /* Compact editorial overview before the social channels. */
 .expertise__top{margin-bottom:34px}.expertise__top .kicker{margin-bottom:14px}.expertise__intro>a{margin-top:16px}.editorial-list{margin-bottom:64px}.editorial-list>span{min-height:62px}
 @media(max-width:760px){.expertise__top{gap:18px;margin-bottom:26px}.editorial-list{margin-bottom:50px}.editorial-list>span{min-height:56px;padding:12px 0}}
