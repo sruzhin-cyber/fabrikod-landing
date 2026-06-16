@@ -103,3 +103,77 @@
 @media(max-width:760px){.expertise__top{gap:18px;margin-bottom:26px}.editorial-list{margin-bottom:50px;grid-template-columns:repeat(2,1fr);gap:10px}.editorial-list>span,.editorial-list>span:first-child,.editorial-list>span:last-child{min-height:54px;padding:10px 14px;border:1px solid var(--line)}}
 @media(max-width:480px){.editorial-list{grid-template-columns:1fr}.editorial-list>span,.editorial-list>span:first-child,.editorial-list>span:last-child{min-height:50px;padding:9px 16px;border:1px solid var(--line)}}
 .social-community__heading{display:block;margin-bottom:24px}.social-community__heading .kicker{margin-bottom:0}
+
+/* Furniture industry landing */
+.furniture-page{background:#f7f8fa;color:var(--ink)}
+.furniture-page .hero{background:radial-gradient(circle at 78% 28%,rgba(180,35,53,.08),transparent 28%),#f7f8fa}
+.furniture-page .hero__grid{grid-template-columns:.95fr 1.05fr}
+.furniture-page .hero h1{font-size:clamp(38px,4.6vw,62px)}
+.furniture-page .hero h1>em{max-width:720px}
+.furniture-page .hero__lead{max-width:650px}
+.furniture-hero__ticks{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;color:#59616b;font-size:13px;font-weight:700}
+.furniture-hero__ticks span{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.72);box-shadow:0 8px 22px rgba(31,35,41,.04)}
+.furniture-shell .product-shell__workspace{background-color:#171a1f}
+.furniture-cabinet{width:240px;height:210px;position:absolute;left:50%;top:48%;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #7d8794;transform:translate(-50%,-50%);box-shadow:18px 24px 42px rgba(0,0,0,.22)}
+.furniture-cabinet span{border-left:1px solid #424a54;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
+.furniture-cabinet span:first-child{border-left:0}.furniture-cabinet span:after{content:"";width:5px;height:34px;display:block;margin:82px auto 0;border-radius:4px;background:var(--orange)}
+.furniture-preview{height:150px}.furniture-preview__cabinet{width:145px;height:96px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #77828e}.furniture-preview__cabinet span{border-left:1px solid #48515c;background:rgba(255,255,255,.04)}.furniture-preview__cabinet span:first-child{border-left:0}
+.furniture-page .market,.furniture-page .problems,.furniture-order-cost,.furniture-page .solution,.furniture-example,.furniture-economy,.furniture-page .implementation,.furniture-page .faq{background:#fff}
+.furniture-page .problems,.furniture-page .audience-cards,.furniture-page .implementation{background:#f7f8fa}
+.furniture-page .metric-card,.furniture-page .problem-card,.furniture-page .audience-card,.furniture-page .order-pipeline article{background:#fff;box-shadow:0 14px 36px rgba(31,35,41,.05)}
+.furniture-page .metric-card>span{width:auto;min-width:44px;padding:0 10px;font-size:13px;font-weight:850}
+.furniture-page .problem-card--dark{background:#fff;border-color:var(--line);color:var(--ink)}
+.furniture-page .problem-card--dark .icon-box{background:#f2f4f6;color:var(--orange)}
+.furniture-page .problem-card--dark p{color:var(--muted)}
+.furniture-cost-table{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}
+.furniture-cost-table__row{min-height:76px;display:grid;grid-template-columns:1.3fr .7fr .8fr;align-items:stretch;border-bottom:1px solid var(--line)}
+.furniture-cost-table__row:last-child{border-bottom:0}
+.furniture-cost-table__row>*{margin:0;padding:22px 28px;display:flex;align-items:center}
+.furniture-cost-table__row span{border-left:1px solid var(--line);color:#59616b}
+.furniture-cost-table__row--head{min-height:54px;background:#f1f3f5}
+.furniture-cost-table__row--head>*{padding-top:16px;padding-bottom:16px;color:#8b949e!important;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.12em}
+.furniture-cost-table__row--total{background:#fbf2f3}.furniture-cost-table__row--total>*{font-weight:850;color:var(--ink)}
+.furniture-big-note{margin-top:22px;padding:30px 34px;border:1px solid rgba(180,35,53,.18);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(31,35,41,.06);color:var(--orange);font-size:clamp(24px,3.5vw,42px);font-weight:850;line-height:1.14;letter-spacing:-.04em}
+.furniture-page .cost{--orange:#b42335;--orange2:#5c1020;--accent-gradient:linear-gradient(135deg,var(--orange),var(--orange2));background:#fff;color:var(--ink)}
+.furniture-page .cost .section-title h2,.furniture-page .cost .before-after h3{color:var(--ink)}
+.furniture-page .cost .section-title>p:last-child,.furniture-page .cost .dashboard-note{color:var(--muted)}
+.furniture-page .cost .loss-calculator{border-color:var(--line);background:#fff;box-shadow:var(--shadow)}
+.furniture-page .cost .loss-calculator__data,.furniture-page .cost .before-after{background:#fff}
+.furniture-page .cost .loss-inputs label,.furniture-page .cost .loss-inputs label>span,.furniture-page .cost .loss-summary strong{color:var(--ink)}
+.furniture-page .cost .dashboard__head,.furniture-page .cost .loss-summary,.furniture-page .cost .loss-summary>div{border-color:var(--line)}
+.furniture-page .cost .loss-summary span,.furniture-page .cost .dashboard__head small{color:var(--muted)}
+.furniture-page .cost .loss-inputs input[type=range]{background:linear-gradient(90deg,var(--orange) var(--range,20%),#e6e9ed var(--range,20%))}
+.furniture-page .cost .loss-calculator__result{background:#f4f6f8;color:var(--ink);border-left:1px solid var(--line)}
+.furniture-page .loss-calculator__result,.furniture-page .pipeline-final,.furniture-page .state-card--after,.furniture-page .speed-note{--orange:#b42335;--orange2:#5c1020;--accent-gradient:linear-gradient(135deg,var(--orange),var(--orange2))}
+.furniture-page .cost .loss-calculator__result>small{color:#8b949e}
+.furniture-page .cost .loss-number{border-color:#dfe3e7}.furniture-page .cost .loss-number strong,.furniture-page .cost .loss-number:last-child strong{color:var(--orange)}.furniture-page .cost .loss-number p{color:#59616b}
+.furniture-page .order-pipeline .pipeline-final{background:#fbf2f3;border-color:rgba(180,35,53,.22);color:var(--ink)}
+.furniture-page .order-pipeline .pipeline-final i{background:var(--orange);color:#fff}
+.furniture-example__grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:center}
+.furniture-example__copy h2{margin-bottom:24px;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-.045em}
+.furniture-example__copy>p{max-width:560px;color:var(--muted);font-size:17px;line-height:1.65}
+.check-list{margin:32px 0 0;padding:0;list-style:none}.check-list li{padding:15px 0 15px 30px;position:relative;border-bottom:1px solid var(--line);font-weight:750}.check-list li:before{content:"✓";position:absolute;left:0;color:var(--orange);font-weight:900}
+.furniture-configurator{overflow:hidden;border:1px solid #333a43;border-radius:26px;background:#1b1f24;box-shadow:0 30px 70px rgba(31,35,41,.18);color:#fff}
+.furniture-configurator .form-head{border-color:#353c45}.furniture-configurator__body{display:grid;grid-template-columns:1fr .78fr;min-height:430px}.furniture-configurator__model{position:relative;display:grid;place-items:center;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:26px 26px}.furniture-cabinet--large{width:255px;height:250px}.furniture-configurator__model strong{position:absolute;left:28px;bottom:45px;font-size:33px;letter-spacing:-.04em}.furniture-configurator__model small{position:absolute;left:28px;bottom:24px;color:#89939e;font-size:10px}.furniture-configurator__params{padding:24px;border-left:1px solid #353c45}.furniture-configurator__params label{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #353c45;color:#8f99a4;font-size:11px}.furniture-configurator__params span{color:#fff;font-weight:750;text-align:right}
+.furniture-page .furniture-after{background:#f7f8fa}
+.furniture-page .before-after{border-color:var(--line);background:#fff;box-shadow:var(--shadow)}
+.furniture-page .before-after__table{border-color:var(--line);background:#fff}
+.furniture-page .before-after__row{border-color:var(--line)}
+.furniture-page .before-after__row>*{color:var(--ink)}
+.furniture-page .before-after__row>strong{color:var(--ink)}
+.furniture-page .before-after__row>span{border-color:var(--line);color:#59616b}
+.furniture-page .before-after__row>span:last-child{background:#fbf2f3;color:var(--ink)}
+.furniture-page .before-after__row--head{background:#f1f3f5}.furniture-page .before-after__row--head>*{color:#8b949e!important}.furniture-page .before-after__row--head>span:last-child{color:var(--orange)!important}
+.furniture-economy .state-card--after{background:#fbf2f3;border-color:rgba(180,35,53,.22);color:var(--ink)}
+.furniture-economy .state-card--after>span{background:rgba(180,35,53,.1);color:var(--orange)}
+.furniture-economy .state-card--after>div{border-color:rgba(180,35,53,.16)}.furniture-economy .state-card--after small{color:#7d8794}.furniture-economy .state-card--after strong{color:var(--ink)}
+.furniture-timeline{grid-template-columns:repeat(4,1fr);gap:20px}.furniture-timeline:before{display:none}.furniture-timeline article{min-height:230px;padding:24px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(31,35,41,.05);text-align:left}.furniture-timeline .timeline-icon{margin:26px 0 28px}.furniture-timeline h3{font-size:16px}
+.furniture-page .speed-note{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink)}.furniture-page .speed-note small{color:#8b949e}.furniture-page .speed-note>span{color:var(--orange);font-weight:850}.furniture-page .speed-note__icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#fbf2f3;color:var(--orange)}
+.furniture-page .final-cta{--orange:#b42335;--orange2:#5c1020;--accent-gradient:linear-gradient(135deg,var(--orange),var(--orange2));background:#f7f8fa;color:var(--ink)}
+.furniture-page .final-cta__grid-bg{background-image:linear-gradient(rgba(31,35,41,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(31,35,41,.04) 1px,transparent 1px)}
+.furniture-page .final-cta h2{color:var(--ink)}.furniture-page .final-cta__copy>p{color:var(--muted)}.furniture-page .eyebrow--light{color:#59616b}.furniture-page .demo-points span{color:#59616b}.furniture-page .final-cta .demo-points i{color:var(--orange)}
+.furniture-page .final-cta .demo-form{border-color:var(--line);background:#fff;box-shadow:var(--shadow)}
+.furniture-page .demo-form label{color:#59616b}.furniture-page .demo-form input,.furniture-page .demo-form textarea{border-color:#d7dce1;color:var(--ink)}.furniture-page .demo-form input::placeholder,.furniture-page .demo-form textarea::placeholder{color:#9aa3ad}.furniture-page .demo-form>small{color:#8b949e}.furniture-page .form-head{border-color:var(--line);color:#8b949e}.furniture-page .form-head i{color:#b0b7bf}
+@media(max-width:1024px){.furniture-page .hero__grid,.furniture-example__grid{grid-template-columns:1fr}.furniture-configurator__body{grid-template-columns:1fr}.furniture-configurator__params{border-left:0;border-top:1px solid #353c45}.furniture-timeline{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.furniture-hero__ticks{grid-template-columns:1fr}.furniture-cost-table__row{grid-template-columns:1fr .55fr .75fr}.furniture-cost-table__row>*{padding:16px 12px;font-size:12px}.furniture-big-note{padding:24px;font-size:26px}.furniture-configurator__body{min-height:auto}.furniture-configurator__model{min-height:360px}.furniture-cabinet,.furniture-cabinet--large{width:190px;height:205px}.furniture-cabinet span:after{margin-top:78px}.furniture-timeline{grid-template-columns:1fr}.furniture-timeline article{min-height:150px;padding-left:24px}.furniture-timeline .timeline-icon{position:static;width:64px;height:64px}.furniture-page .cost .loss-calculator__result{border-left:0;border-top:1px solid var(--line);min-height:360px}}
+@media(max-width:480px){.furniture-page .hero h1{font-size:31px}.furniture-cost-table{margin-left:-7px;margin-right:-7px}.furniture-cost-table__row>*{padding:14px 8px;font-size:10px}.furniture-configurator__params label{align-items:flex-start;flex-direction:column;gap:5px;padding:11px 0}.furniture-configurator__params span{text-align:left}.furniture-configurator__model strong{font-size:26px}}

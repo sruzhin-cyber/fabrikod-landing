@@ -2,15 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuButton = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
 
-  menuButton.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
-    menuButton.setAttribute('aria-expanded', String(open));
-  });
+  if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
 
-  nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-    nav.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-  }));
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -54,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
     [requests, conversion, requestCost].forEach(setRangeFill);
   }
 
-  [requests, conversion, requestCost].forEach((input) => input.addEventListener('input', updateCalculator));
-  updateCalculator();
+  if (requests && conversion && requestCost) {
+    [requests, conversion, requestCost].forEach((input) => input.addEventListener('input', updateCalculator));
+    updateCalculator();
+  }
 
   document.querySelectorAll('.accordion__item button').forEach((button) => {
     button.addEventListener('click', () => {
@@ -77,8 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelector('#demo-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    event.currentTarget.classList.add('is-success');
-  });
+  const demoForm = document.querySelector('#demo-form');
+  if (demoForm) {
+    demoForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      event.currentTarget.classList.add('is-success');
+    });
+  }
 });
