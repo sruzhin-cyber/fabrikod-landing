@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>фабрикод — брендбук</title>
+  <meta name="description" content="Брендбук фабрикод: логотип, цвета, типографика, компоненты и визуальная система.">
+  <link rel="stylesheet" href="brandbook.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="logo" href="#top" aria-label="фабрикод">
+        <span>фабри<span class="logo__accent">к</span>од</span>
+      </a>
+      <nav class="nav" aria-label="Разделы брендбука">
+        <a href="#identity">Айдентика</a>
+        <a href="#colors">Цвета</a>
+        <a href="#type">Типографика</a>
+        <a href="#components">Компоненты</a>
+        <a href="#visual">Визуальный элемент</a>
+        <a href="#examples">Примеры</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span>Brand system v1</p>
+          <h1>Визуальная система фабрикод</h1>
+          <p class="lead">Цифровое описание производства через параметры и правила. фабрикод — современная SaaS-система для автоматизации изделий под заказ.</p>
+          <div class="hero-actions">
+            <a class="button" href="#visual">Фирменный элемент</a>
+            <a class="button button--secondary" href="#components">Компоненты</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Параметрическая рамка фабрикод">
+          <div class="param-frame param-frame--hero">
+            <span class="corner corner--tl"></span>
+            <span class="corner corner--tr"></span>
+            <span class="corner corner--bl"></span>
+            <span class="corner corner--br"></span>
+            <div class="dark-mockup">
+              <div class="mockup-bar">
+                <i></i><i></i><i></i>
+                <b>фабрикод / config</b>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-object">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="mockup-panel">
+                  <label>Ширина <strong>2400 мм</strong></label>
+                  <label>Материал <strong>ЛДСП</strong></label>
+                  <label>Файлы <strong>DXF / NC / SPEC</strong></label>
+                </div>
+              </div>
+            </div>
+            <div class="param-dot param-dot--one"></div>
+            <div class="param-dot param-dot--two"></div>
+            <div class="callout callout--price">148 500 ₽</div>
+            <div class="callout callout--file">SPEC ready</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="identity">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">01</span>
+          <div>
+            <p class="kicker">Логотип</p>
+            <h2>Текстовый знак с акцентной буквой</h2>
+            <p>Логотип набран Inter ExtraBold / 800. Бренд пишется строчными русскими буквами: фабрикод.</p>
+          </div>
+        </div>
+        <div class="identity-grid">
+          <article class="logo-card logo-card--large">
+            <span class="logo logo--display">фабри<span class="logo__accent">к</span>од</span>
+            <p>Основная версия на светлом фоне</p>
+          </article>
+          <article class="logo-card logo-card--dark">
+            <span class="logo logo--display logo--light">фабри<span class="logo__accent">к</span>од</span>
+            <p>Версия для темных интерфейсных поверхностей</p>
+          </article>
+          <article class="rule-card">
+            <span>Шрифт логотипа</span>
+            <strong>Inter ExtraBold / 800</strong>
+            <p>Inter Black использовать только в крупных имиджевых композициях.</p>
+          </article>
+          <article class="rule-card">
+            <span>Правило написания</span>
+            <strong>фабрикод</strong>
+            <p>Всегда строчными русскими буквами в русскоязычной коммуникации.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white" id="colors">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">02</span>
+          <div>
+            <p class="kicker">Цветовая система</p>
+            <h2>Светлая основа и бордовый смысловой акцент</h2>
+            <p>Бордовый используется для действий, активных параметров и ключевых чисел. Темные поверхности применяются только для продуктовых mockup-блоков.</p>
+          </div>
+        </div>
+        <div class="color-grid">
+          <article class="swatch swatch--bg"><span>#f7f8fa</span><strong>Фон</strong></article>
+          <article class="swatch swatch--card"><span>#ffffff</span><strong>Карточки</strong></article>
+          <article class="swatch swatch--ink"><span>#1f2329</span><strong>Текст</strong></article>
+          <article class="swatch swatch--muted"><span>#7d8794</span><strong>Вторичный</strong></article>
+          <article class="swatch swatch--accent"><span>#b42335</span><strong>Акцент</strong></article>
+          <article class="swatch swatch--burgundy"><span>#5c1020</span><strong>Темный бордовый</strong></article>
+          <article class="swatch swatch--gradient"><span>135°</span><strong>Градиент</strong><code>#b42335 → #5c1020</code></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="type">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">03</span>
+          <div>
+            <p class="kicker">Типографика</p>
+            <h2>Крупно, спокойно, без лишнего веса</h2>
+            <p>Основной шрифт — Inter. Заголовки крупные, но не чрезмерно жирные; пояснения остаются легкими и читаемыми.</p>
+          </div>
+        </div>
+        <div class="type-grid">
+          <div class="type-sample type-sample--h1">
+            <span>H1 / 700</span>
+            <strong>Больше заказов без роста штата</strong>
+          </div>
+          <div class="type-sample type-sample--h2">
+            <span>H2 / 650-700</span>
+            <strong>От параметров до ЧПУ — за минуты</strong>
+          </div>
+          <div class="type-sample type-sample--body">
+            <span>Body / 400</span>
+            <p>Клиент выбирает параметры, система применяет правила, производство получает цену, спецификацию и файлы в нужном формате.</p>
+          </div>
+          <div class="type-table">
+            <div><b>H1</b><span>до 3 строк / 46-72px / 700</span></div>
+            <div><b>Lead</b><span>18-20px / 400 / 1.55-1.72</span></div>
+            <div><b>Caption</b><span>10-13px / 500-650 / 1.4</span></div>
+            <div><b>Button</b><span>14-16px / 650-700</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white" id="components">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">04</span>
+          <div>
+            <p class="kicker">Компоненты</p>
+            <h2>Кнопки, карточки, формы и таблицы</h2>
+            <p>Компоненты выглядят как часть B2B SaaS-продукта: светлые поверхности, мягкие тени, точная сетка и спокойный текст.</p>
+          </div>
+        </div>
+        <div class="component-grid">
+          <article class="component-card">
+            <span class="component-index">01</span>
+            <h3>Кнопки</h3>
+            <div class="button-stack">
+              <a class="button" href="#examples">Основное действие</a>
+              <a class="button button--secondary" href="#examples">Вторичное действие</a>
+            </div>
+          </article>
+          <article class="component-card">
+            <span class="component-index">02</span>
+            <h3>Карточка</h3>
+            <p>Фон #ffffff, рамка #e5e8ec, радиус 18-24px, заголовок 600, описание 400.</p>
+          </article>
+          <article class="component-card">
+            <span class="component-index">03</span>
+            <h3>Форма</h3>
+            <form class="form-demo">
+              <label>Компания<input type="text" value="Производство под заказ" aria-label="Компания"></label>
+              <label>Что производите?<textarea aria-label="Что производите?">Изделия с параметрами</textarea></label>
+            </form>
+          </article>
+          <article class="component-card component-card--wide">
+            <span class="component-index">04</span>
+            <h3>Таблица процесса</h3>
+            <div class="data-table" role="table" aria-label="Пример таблицы">
+              <div class="data-row data-row--head" role="row"><strong>Этап</strong><span>До</span><span>После</span></div>
+              <div class="data-row" role="row"><strong>Расчет</strong><span>Вручную</span><span>Автоматически</span></div>
+              <div class="data-row" role="row"><strong>Документы</strong><span>Разрозненно</span><span>SPEC / DXF / NC</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visual">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">05</span>
+          <div>
+            <p class="kicker">Фирменный элемент</p>
+            <h2>Параметрическая рамка</h2>
+            <p>Главный элемент бренда показывает, что изделие описано параметрами, связано правилами и превращается в производственные данные.</p>
+          </div>
+        </div>
+        <div class="visual-grid">
+          <div class="frame-showcase">
+            <div class="param-frame">
+              <span class="corner corner--tl"></span>
+              <span class="corner corner--tr"></span>
+              <span class="corner corner--bl"></span>
+              <span class="corner corner--br"></span>
+              <div class="frame-object">
+                <small>Параметры</small>
+                <strong>Правила расчета</strong>
+                <p>Цена, спецификация и файлы обновляются одновременно.</p>
+              </div>
+              <div class="param-dot param-dot--one"></div>
+              <div class="param-dot param-dot--two"></div>
+              <div class="callout callout--price">Цена</div>
+              <div class="callout callout--file">DXF / NC</div>
+            </div>
+          </div>
+          <div class="principles">
+            <article><span>01</span><strong>Тонкая рамка</strong><p>Не чертеж на весь экран, а аккуратный слой вокруг объекта.</p></article>
+            <article><span>02</span><strong>Один активный параметр</strong><p>Бордовый акцент показывает главное действие или изменение.</p></article>
+            <article><span>03</span><strong>Выходные метки</strong><p>Labels показывают результат: цена, SPEC, DXF, NC, CRM.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white" id="patterns">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">06</span>
+          <div>
+            <p class="kicker">Паттерны</p>
+            <h2>Сетка, связи и активные параметры</h2>
+            <p>Паттерны не заменяют контент. Они поддерживают идею цифрового процесса и должны оставаться тонкими.</p>
+          </div>
+        </div>
+        <div class="pattern-grid">
+          <article class="pattern-card pattern-card--grid"><strong>Конфигурационная сетка</strong><span></span></article>
+          <article class="pattern-card pattern-card--nodes"><strong>Алгоритмические связи</strong><span></span><span></span><span></span></article>
+          <article class="pattern-card pattern-card--labels"><strong>Выходные метки</strong><div><i>SPEC</i><i>DXF</i><i>NC</i></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">07</span>
+          <div>
+            <p class="kicker">Примеры использования</p>
+            <h2>Сайт, презентации, PDF и продукт</h2>
+            <p>Единая система должна работать на маркетинговых страницах, в коммерческих материалах, интерфейсе продукта и на выставочных носителях.</p>
+          </div>
+        </div>
+        <div class="examples-grid">
+          <article class="example-card example-card--site">
+            <div class="mini-browser">
+              <span></span>
+              <h3>Hero сайта</h3>
+              <p>Крупный тезис, CTA и темный mockup конфигуратора в параметрической рамке.</p>
+            </div>
+          </article>
+          <article class="example-card example-card--deck">
+            <div class="slide-preview">
+              <small>Презентация</small>
+              <strong>Параметры → Правила → Производство</strong>
+              <div class="slide-line"><i></i><i></i><i></i></div>
+            </div>
+          </article>
+          <article class="example-card example-card--pdf">
+            <div class="pdf-preview">
+              <small>PDF-кейс</small>
+              <strong>4 800 000 ₽</strong>
+              <p>потенциальная экономия в год</p>
+            </div>
+          </article>
+          <article class="example-card example-card--product">
+            <div class="product-preview">
+              <label>Материал <strong>ЛДСП</strong></label>
+              <label>Фурнитура <strong>Blum</strong></label>
+              <label>Экспорт <strong>DXF / NC</strong></label>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <a class="logo logo--light" href="#top">фабри<span class="logo__accent">к</span>од</a>
+      <p>Brand Book v1. Цифровая инфраструктура для производства изделий под заказ.</p>
+    </div>
+  </footer>
+</body>
+</html>
