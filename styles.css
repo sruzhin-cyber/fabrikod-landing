@@ -253,7 +253,7 @@
 .windows-page .hero{background:radial-gradient(circle at 78% 28%,rgba(180,35,53,.08),transparent 28%),#f7f8fa}
 .windows-page .hero h1{max-width:720px}
 .windows-page .hero h1>span,.windows-page .hero h1>em{display:block}
-.windows-page .hero__lead{max-width:660px}
+.windows-page .hero__lead{max-width:660px;font-weight:400}
 .windows-hero__note{max-width:640px;margin:26px 0 0;color:#747d87;font-size:13px;line-height:1.65}
 .windows-visual{height:560px}.windows-ui{position:absolute;inset:6px 0 20px;overflow:hidden;border:1px solid #303740;border-radius:28px;background:#171a1f;box-shadow:0 36px 80px rgba(31,35,41,.2);color:#fff}
 .windows-ui:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:28px 28px}
@@ -276,6 +276,7 @@
 .windows-page .final-cta{background:#f7f8fa}.windows-page .final-cta .demo-form textarea{resize:vertical}.windows-page .faq{background:#fff}
 .windows-page .demo-form label{font-size:14px;line-height:1.35;gap:8px}
 .windows-page .demo-form input,.windows-page .demo-form textarea{font-size:15px;line-height:1.45}
+.windows-page .section-title>p:last-child,.windows-page .section-heading>div>p:last-child,.windows-panel__text p,.windows-card p,.meaning-card p,.windows-state-grid .state-card p,.department-list p,.windows-timeline p,.windows-demo-card p,.windows-page .final-cta__copy>p,.windows-page .accordion__content p{font-weight:400}
 @media(max-width:1120px){.windows-ui__screen,.windows-panel,.windows-solution__grid{grid-template-columns:1fr}.windows-ui__panel{margin:0 20px 20px}.windows-card-grid,.windows-problem-grid{grid-template-columns:repeat(2,1fr)}.windows-card--wide{grid-column:span 2}.windows-timeline{grid-template-columns:repeat(2,1fr)}.windows-demo-card{grid-template-columns:1fr}.department-list div{grid-template-columns:190px 1fr}}
 @media(max-width:760px){.windows-page .hero{padding-top:116px}.windows-page .hero h1{font-size:38px}.windows-visual{height:560px}.windows-ui__screen{grid-template-columns:1fr}.windows-ui__model{min-height:300px}.window-system{width:220px;height:190px}.window-label--size{left:28px;bottom:25px}.window-label--profile{right:30px;top:54px}.windows-panel{padding:26px}.windows-card-grid,.windows-problem-grid,.windows-state-grid{grid-template-columns:1fr}.windows-card--wide{grid-column:auto}.windows-card{min-height:auto}.windows-chip-grid span{width:100%;justify-content:center}.department-list div{grid-template-columns:1fr;gap:10px;padding:22px 0}.windows-timeline{grid-template-columns:1fr}.windows-demo-card{padding:28px}.windows-page .demo-points{grid-template-columns:1fr}.windows-page .final-cta .demo-form{padding:24px}}
 @media(max-width:480px){.windows-page .hero h1{font-size:32px}.windows-page .hero__lead{font-size:16px}.windows-visual{height:520px}.windows-ui{border-radius:20px}.windows-ui__bar{padding:0 14px}.windows-ui__bar strong{font-size:12px}.windows-ui__bar b{font-size:15px}.windows-ui__bar>span{display:none}.windows-ui__panel label{min-height:52px}.windows-panel__copy h2{font-size:24px}.windows-demo-card h2{font-size:31px}.meaning-card{padding:24px}.windows-state-grid .state-card p{font-size:15px}}
