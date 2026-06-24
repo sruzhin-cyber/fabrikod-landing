@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Калькулятор ручного расчёта заказов | фабрикод</title>
+  <meta name="description" content="Посчитайте, сколько часов и денег производство теряет на ручном расчёте заказов, уточнениях, ошибках и переделках. Калькулятор экономического эффекта конфигуратора фабрикод.">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --paper: #ffffff;
+      --ink: #1f1d1b;
+      --muted: #6f6860;
+      --soft: #ebe6dc;
+      --line: #ddd5ca;
+      --brand: #7c2631;
+      --brand-dark: #3b1518;
+      --brand-soft: #f1e3df;
+      --accent: #c99248;
+      --green: #275b3a;
+      --radius: 30px;
+      --shadow: 0 20px 60px rgba(43, 35, 28, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(124, 38, 49, .08), transparent 34rem),
+        radial-gradient(circle at 88% 6%, rgba(201, 146, 72, .16), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 245, 240, .84);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(31, 29, 27, .08);
+    }
+
+    .header__inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -.05em;
+      white-space: nowrap;
+      color: #2f2c29;
+    }
+
+    .logo__k {
+      position: relative;
+      display: inline-block;
+      color: #2f2c29;
+    }
+
+    .logo__k::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 0.62em;
+      transform: translateX(-50%);
+      bottom: -0.10em;
+      height: 0.12em;
+      border-radius: 99px;
+      background: var(--brand);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(31, 29, 27, .72);
+    }
+
+    .nav a:hover {
+      color: var(--brand);
+    }
+
+    .header__cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 30px;
+      border: 1px solid transparent;
+      padding: 14px 22px;
+      font-weight: 800;
+      line-height: 1;
+      min-height: 48px;
+      transition: .2s ease;
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--brand);
+      color: white;
+      box-shadow: 0 16px 34px rgba(124, 38, 49, .22);
+    }
+
+    .btn--primary:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      border-color: rgba(31, 29, 27, .14);
+      color: var(--ink);
+      background: rgba(255, 255, 255, .62);
+      box-shadow: none;
+    }
+
+    .btn--ghost:hover {
+      border-color: rgba(124, 38, 49, .28);
+      color: var(--brand);
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 30px;
+      border: 1px solid var(--brand);
+      background: var(--brand);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 12px 30px rgba(124, 38, 49, .18);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(124, 38, 49, .24);
+    }
+
+    .button--secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 82px 0 52px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(480px, 620px);
+      gap: 42px;
+      align-items: flex-start;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      margin: 0 0 18px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .65);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .kicker:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(42px, 6vw, 86px);
+      line-height: .96;
+      letter-spacing: -.075em;
+    }
+
+    h1 em {
+      color: var(--brand);
+      font-style: normal;
+    }
+
+    .lead {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.45;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero-insight {
+      max-width: 640px;
+      margin-top: 0;
+      padding: 18px 20px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 34px rgba(43, 35, 28, .08);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .hero-insight strong {
+      color: var(--ink);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-row span {
+      padding: 10px 14px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hex-bg {
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -220px;
+      top: 20px;
+      opacity: .07;
+      pointer-events: none;
+      background: var(--brand);
+      clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    }
+
+    .calculator-card {
+      position: relative;
+      background: rgba(255, 255, 255, .88);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 14px 22px 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .calc-head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .calc-head h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .calc-badge {
+      white-space: nowrap;
+      padding: 9px 12px;
+      border-radius: 24px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .calc-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label.field {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fbfaf7;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 780;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: rgba(124, 38, 49, .5);
+      box-shadow: 0 0 0 4px rgba(124, 38, 49, .08);
+    }
+
+    .results {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .result {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .result strong {
+      display: block;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      margin-bottom: 6px;
+    }
+
+    .result span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .result--main {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .result--main span {
+      color: rgba(255,255,255,.72);
+    }
+
+    .calc-note {
+      position: relative;
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 58px 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      margin-bottom: 16px;
+      font-size: clamp(34px, 4.6vw, 62px);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 210px;
+      padding: 24px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 36px rgba(43, 35, 28, .06);
+    }
+
+    .card b {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: var(--brand-soft);
+      color: var(--brand);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .state {
+      padding: clamp(24px, 4vw, 40px);
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: #fff;
+      min-height: 320px;
+    }
+
+    .state--after {
+      background: var(--brand-dark);
+      color: #fff;
+      border-color: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .state--after:after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -140px;
+      bottom: -130px;
+      background: #fff;
+      opacity: .06;
+      clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    }
+
+    .state .label {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 20px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 24px;
+    }
+
+    .state--after .label {
+      background: rgba(255,255,255,.14);
+      color: #fff;
+    }
+
+    .state h3 {
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+
+    .state p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 560px;
+    }
+
+    .state--after p {
+      color: rgba(255,255,255,.72);
+    }
+
+    .industries {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .industry {
+      min-height: 164px;
+      padding: 24px;
+      border-radius: 30px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .industry h3 {
+      margin-bottom: 9px;
+      font-size: 23px;
+      letter-spacing: -.04em;
+    }
+
+    .industry p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .quote {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: center;
+      padding: clamp(28px, 5vw, 54px);
+      border-radius: 38px;
+      background:
+        linear-gradient(135deg, rgba(124, 38, 49, .08), rgba(255,255,255,.54)),
+        #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .quote h2 {
+      margin-bottom: 0;
+      font-size: clamp(32px, 4.2vw, 58px);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+
+    .quote p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .cta {
+      padding-bottom: 76px;
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 24px;
+      padding: clamp(28px, 5vw, 54px);
+      border-radius: 38px;
+      background: var(--ink);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box:before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -200px;
+      top: -220px;
+      background: var(--brand);
+      opacity: .32;
+      clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    }
+
+    .cta-box > * {
+      position: relative;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .96;
+      letter-spacing: -.07em;
+      margin-bottom: 18px;
+    }
+
+    .cta-box p {
+      max-width: 660px;
+      color: rgba(255,255,255,.72);
+      font-size: 19px;
+    }
+
+    .form {
+      display: grid;
+      gap: 10px;
+      align-self: start;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      background: rgba(255,255,255,.10);
+      color: #fff;
+      padding: 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    .form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form input::placeholder,
+    .form textarea::placeholder {
+      color: rgba(255,255,255,.48);
+    }
+
+    .footer {
+      padding: 34px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+
+    .calc-grid--sliders {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .slider-field {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+    }
+
+    .slider-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .slider-name {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .slider-head > span:last-child {
+      color: var(--brand);
+      font-weight: 900;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .slider-field em {
+      margin-top: -2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .slider-field small {
+      display: flex;
+      justify-content: space-between;
+      color: #928980;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .slider-field input[type="range"] {
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      min-height: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--brand) var(--fill, 0%), var(--soft) var(--fill, 0%));
+      outline: none;
+      box-shadow: none;
+    }
+
+    .slider-field input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--brand);
+      border: 4px solid #fff;
+      box-shadow: 0 4px 14px rgba(124, 38, 49, .26);
+      cursor: pointer;
+    }
+
+    .slider-field input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--brand);
+      border: 4px solid #fff;
+      box-shadow: 0 4px 14px rgba(124, 38, 49, .26);
+      cursor: pointer;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .hero-grid,
+      .quote,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .industries {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .calculator-card {
+        padding: 16px;
+        border-radius: 28px;
+      }
+
+      .calc-grid,
+      .results,
+      .before-after,
+      .cards,
+      .industries {
+        grid-template-columns: 1fr;
+      }
+
+      .result--main {
+        display: block;
+      }
+
+      .state {
+        min-height: auto;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .header__cta .btn--ghost {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="top">
+    <header class="header">
+      <div class="container header__inner">
+        <a href="#top" class="logo">фабри<span class="logo__k">к</span>од</a>
+        <nav class="nav" aria-label="Навигация">
+          <a href="#calc">Калькулятор</a>
+          <a href="#logic">Как считаем</a>
+          <a href="#before-after">До / после</a>
+          <a href="#demo">Демо</a>
+        </nav>
+        <div class="header__cta">
+          <a class="btn btn--ghost" href="/login">Вход</a>
+          <a class="btn btn--primary" href="/signup">Регистрация</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hex-bg" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div>
+            <p class="kicker">ROI-калькулятор</p>
+            <h1>Сколько стоит <em>ручной расчёт</em> заказов?</h1>
+            <p class="lead">Введите пять параметров: количество заказов, размер команды, среднюю зарплату, средний чек и человеко-часы на заказ. Калькулятор покажет экономию и ROI за год.</p>
+
+            <div class="hero-insight" id="explain">Сейчас команда из 4 человек обходится примерно в 800 000 ₽ в месяц. фабрикод считает модель так: трудозатраты снижаются до 1/20 текущего ФОТ, добавляется комиссия 1,9% от месячного объёма заказов и 57 000 ₽ – единоразовый платеж за настройку. При этих вводных чистая экономия ≈ 703 000 ₽ в месяц.</div>
+          </div>
+
+          <article class="calculator-card" id="calc">
+            <div class="calc-head">
+              <h2>Ваш расчёт</h2>
+              <span class="calc-badge">оценка за 30 секунд</span>
+            </div>
+
+            <div class="calc-grid calc-grid--sliders">
+              <label class="field slider-field"><div class="slider-head"><span class="slider-name">Заказов в месяц</span><span id="ordersValue">30</span></div>
+                <input id="orders" type="range" min="10" max="500" step="10" value="30">
+                <small><span>10</span><span>500</span></small>
+              </label>
+              <label class="field slider-field"><div class="slider-head"><span class="slider-name">Размер команды</span><span id="teamValue">4</span></div>
+                <input id="people" type="range" min="1" max="50" step="1" value="4">
+                <em>Все, кто участвует в заказе: продажи, инженер, CAD/CAM, производство.</em>
+                <small><span>1</span><span>50</span></small>
+              </label>
+              <label class="field slider-field"><div class="slider-head"><span class="slider-name">Средняя зарплата, ₽/мес</span><span id="salaryValue">200 000 ₽</span></div>
+                <input id="salary" type="range" min="30000" max="300000" step="5000" value="200000">
+                <small><span>30 000 ₽</span><span>300 000 ₽</span></small>
+              </label>
+              <label class="field slider-field"><div class="slider-head"><span class="slider-name">Средний чек, ₽</span><span id="avgCheckValue">100 000 ₽</span></div>
+                <input id="avgCheck" type="range" min="10000" max="1000000" step="10000" value="100000">
+                <small><span>10 000 ₽</span><span>1 000 000 ₽</span></small>
+              </label>
+              <label class="field slider-field"><div class="slider-head"><span class="slider-name">Чел-часов на заказ сейчас</span><span id="hoursValue">11,5</span></div>
+                <input id="hours" type="range" min="1" max="40" step="0.5" value="11.5">
+                <small><span>1</span><span>40</span></small>
+              </label>
+            </div>
+
+            <div class="results">
+              <div class="result result--main">
+                <div>
+                  <strong id="monthlyEffect">0 ₽</strong>
+                  <span>чистая экономия в месяц</span>
+                </div>
+                <div>
+                  <strong id="payback">—</strong>
+                  <span>ROI за год</span>
+                </div>
+              </div>
+              <div class="result">
+                <strong id="savedHours">0 ч</strong>
+                <span>экономия времени в месяц</span>
+              </div>
+              <div class="result">
+                <strong id="annualEffect">0 ₽</strong>
+                <span>затраты с фабрикод в месяц</span>
+              </div>
+              <div class="result">
+                <strong id="laborSavings">0 ₽</strong>
+                <span>затраты сейчас в месяц</span>
+              </div>
+              <div class="result">
+                <strong id="reworkSavings">0 ₽</strong>
+                <span>ошибок исключено в месяц</span>
+              </div>
+            </div>
+
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="logic">
+        <div class="container">
+          <div class="section-title">
+            <p class="kicker">Что считается</p>
+            <h2>Считаем реальные потери бизнеса</h2>
+            <p>Производству важно сколько людей занято ручными расчётами, где теряются параметры, сколько стоят ошибки и когда автоматизация вернёт деньги.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <b>01</b>
+              <h3>Ручные часы</h3>
+              <p>Менеджер уточняет параметры, считает цену, проверяет совместимость и передаёт данные дальше.</p>
+            </article>
+            <article class="card">
+              <b>02</b>
+              <h3>ФОТ</h3>
+              <p>Часы сотрудников переводятся в деньги через среднюю зарплату и рабочую нагрузку.</p>
+            </article>
+            <article class="card">
+              <b>03</b>
+              <h3>Ошибки</h3>
+              <p>Неправильный размер, материал, опция или срок превращаются в переделку и потерю доверия.</p>
+            </article>
+            <article class="card">
+              <b>04</b>
+              <h3>Окупаемость</h3>
+              <p>Калькулятор показывает, за сколько месяцев запуск конфигуратора может отбиться.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="before-after">
+        <div class="container before-after">
+          <article class="state">
+            <span class="label">Сейчас</span>
+            <h3>Заказ живёт в переписке и таблицах</h3>
+            <p>Клиент задаёт вопросы, менеджер уточняет параметры, цена считается вручную, производство получает неполное задание, а правки теряются между чатами, Excel и CRM.</p>
+          </article>
+
+          <article class="state state--after">
+            <span class="label">С фабрикод</span>
+            <h3>Параметры сразу превращаются в расчёт и спецификацию</h3>
+            <p>Клиент или менеджер собирает заказ в понятной форме. Цена считается по правилам, параметры фиксируются, производство получает готовое задание.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <p class="kicker">Для кого</p>
+            <h2>Для производств, где заказ собирается из параметров</h2>
+            <p>Калькулятор подходит не всем. Он полезен там, где цена и задание зависят от размеров, материалов, опций, сроков, комплектации и производственных правил.</p>
+          </div>
+
+          <div class="industries">
+            <article class="industry">
+              <h3>Мебель</h3>
+              <p>Размеры, материалы, фурнитура, фасады, комплектация и стоимость.</p>
+            </article>
+            <article class="industry">
+              <h3>Двери и окна</h3>
+              <p>Профиль, стекло, размеры, цвет, монтаж, сроки и спецификация.</p>
+            </article>
+            <article class="industry">
+              <h3>Лестницы</h3>
+              <p>Геометрия, материал, ограждения, ступени, покрытие и производство.</p>
+            </article>
+            <article class="industry">
+              <h3>3D-печать</h3>
+              <p>Модель, материал, объём, время печати, постобработка и цена.</p>
+            </article>
+            <article class="industry">
+              <h3>Ювелирные изделия</h3>
+              <p>Модель, металл, размер, камни, гравировка, срок и задание мастеру.</p>
+            </article>
+            <article class="industry">
+              <h3>Предметы интерьера</h3>
+              <p>Размеры, отделка, комплектация, стоимость и данные для производства.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="quote">
+            <h2>Цифра в калькуляторе — повод пересмотреть процесс</h2>
+            <p>Если ручной расчёт занимает сотни часов в месяц, нужно понять как убрать лишние операции.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="demo">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <p class="kicker">Демо</p>
+              <h2>Посчитаем ваш процесс</h2>
+              <p>Разберём одну группу изделий, посмотрим, где теряются часы и параметры, и покажем, какой конфигуратор нужен: простой шаблон, адаптация или индивидуальная разработка.</p>
+              <a class="button" href="#demo">Запросить разбор</a>
+            </div>
+
+            <form class="form" action="#" method="post">
+              <input type="text" name="name" placeholder="Имя">
+              <input type="tel" name="phone" placeholder="Телефон">
+              <input type="email" name="email" placeholder="Email">
+              <textarea name="message" placeholder="Что производите и как сейчас считаете заказы?"></textarea>
+              <button class="button" type="submit">Отправить заявку</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-row">
+        <div>© фабрикод</div>
+        <div>Конфигуратор заказа: параметры → цена → спецификация → производство</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const fields = {
+      orders: document.getElementById('orders'),
+      avgCheck: document.getElementById('avgCheck'),
+      people: document.getElementById('people'),
+      salary: document.getElementById('salary'),
+      hours: document.getElementById('hours')
+    };
+
+    const values = {
+      orders: document.getElementById('ordersValue'),
+      avgCheck: document.getElementById('avgCheckValue'),
+      people: document.getElementById('teamValue'),
+      salary: document.getElementById('salaryValue'),
+      hours: document.getElementById('hoursValue')
+    };
+
+    const out = {
+      monthlyEffect: document.getElementById('monthlyEffect'),
+      payback: document.getElementById('payback'),
+      savedHours: document.getElementById('savedHours'),
+      annualEffect: document.getElementById('annualEffect'),
+      laborSavings: document.getElementById('laborSavings'),
+      reworkSavings: document.getElementById('reworkSavings'),
+      explain: document.getElementById('explain')
+    };
+
+    const rub = new Intl.NumberFormat('ru-RU', {
+      style: 'currency',
+      currency: 'RUB',
+      maximumFractionDigits: 0
+    });
+
+    const num = new Intl.NumberFormat('ru-RU', {
+      maximumFractionDigits: 0
+    });
+
+    function value(id) {
+      return Math.max(0, Number(fields[id].value || 0));
+    }
+
+    function updateFill(input) {
+      const min = Number(input.min || 0);
+      const max = Number(input.max || 100);
+      const current = Number(input.value || 0);
+      const percent = ((current - min) / (max - min)) * 100;
+      input.style.setProperty('--fill', `${percent}%`);
+    }
+
+    function calculate() {
+      const orders = value('orders');
+      const avgCheck = value('avgCheck');
+      const people = Math.max(1, value('people'));
+      const salary = value('salary');
+      const hours = value('hours');
+
+      const setup = 57000;
+      const automationShare = 0.80;
+      const currentMonthlyLaborCost = people * salary;
+      const laborWithFabrikod = currentMonthlyLaborCost / 20;
+      const monthlyOrderVolume = orders * avgCheck;
+      const monthlyConfiguratorFee = monthlyOrderVolume * 0.019;
+      const costWithFabrikod = laborWithFabrikod + monthlyConfiguratorFee;
+      const monthlySavings = Math.max(0, currentMonthlyLaborCost - costWithFabrikod);
+      const savedHours = orders * hours * automationShare;
+      const preventedErrors = Math.round(orders * 0.05);
+      const annualInvestment = monthlyConfiguratorFee * 12 + setup;
+      const annualRoi = annualInvestment > 0 ? ((monthlySavings * 12 - setup) / annualInvestment) * 100 : 0;
+
+      values.orders.textContent = num.format(orders);
+      values.people.textContent = num.format(people);
+      values.salary.textContent = rub.format(salary);
+      values.avgCheck.textContent = rub.format(avgCheck);
+      values.hours.textContent = hours.toLocaleString('ru-RU', { maximumFractionDigits: 1 });
+
+      Object.values(fields).forEach(updateFill);
+
+      out.monthlyEffect.textContent = rub.format(monthlySavings);
+      out.payback.textContent = `${annualRoi >= 0 ? '+' : ''}${Math.round(annualRoi)}%`;
+      out.savedHours.textContent = `${num.format(savedHours)} ч`;
+      out.annualEffect.textContent = rub.format(costWithFabrikod);
+      out.laborSavings.textContent = rub.format(currentMonthlyLaborCost);
+      out.reworkSavings.textContent = num.format(preventedErrors);
+
+      out.explain.textContent = `Сейчас команда из ${num.format(people)} человек обходится примерно в ${rub.format(currentMonthlyLaborCost)} в месяц. фабрикод считает модель так: трудозатраты снижаются до 1/20 текущего ФОТ, добавляется ориентировочный тариф 1,9% от месячного объёма заказов и разовая настройка ${rub.format(setup)}. При этих вводных чистая экономия ≈ ${rub.format(monthlySavings)} в месяц.`;
+    }
+
+    Object.values(fields).forEach(field => field.addEventListener('input', calculate));
+    calculate();
+  </script>
+</body>
+</html>
