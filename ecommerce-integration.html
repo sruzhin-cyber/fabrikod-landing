@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Интеграция фабрикод с сайтом, CRM, оплатой и производственным процессом. Для компаний, которые получают заказы из рекламы и хотят быстро переводить заявку в цену, спецификацию и работу." />
+  <meta name="keywords" content="интеграция конфигуратора, конфигуратор на сайт, калькулятор стоимости на сайт, конфигуратор Битрикс24, конфигуратор amoCRM, конфигуратор 1С, Tilda, WordPress, Битрикс, МойСклад, ЮKassa" />
+  <title>Интеграция с сайтом и CRM — фабрикод</title>
+  <style>
+    :root{
+      --page-bg:#f6f7f8;
+      --text:#20242a;
+      --muted:rgba(32,36,42,.64);
+      --line:rgba(32,36,42,.12);
+      --card:#fff;
+      --accent:#9b1b32;
+      --accent-dark:#641021;
+      --accent-soft:rgba(155,27,50,.10);
+      --gold:#d4a052;
+      --dark:#17191d;
+      --dark-2:#20242a;
+      --radius:30px;
+      --shadow:0 28px 80px rgba(32,20,24,.10);
+      --soft-shadow:0 18px 54px rgba(32,20,24,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--page-bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img,svg{max-width:100%;display:block}
+    button,input,textarea{font:inherit}
+    .container{width:min(1180px,calc(100% - 48px));margin:0 auto}
+    .section{position:relative;padding:96px 0}
+    .header{position:sticky;top:0;z-index:50;background:rgba(246,247,248,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(32,36,42,.08)}
+    .header__inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-size:24px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;color:var(--text)}
+    .logo__k{position:relative;display:inline-block}
+    .logo__k:after{content:"";position:absolute;left:50%;bottom:-.10em;width:.62em;height:.12em;border-radius:999px;background:var(--accent);transform:translateX(-50%)}
+    .nav{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:700;color:rgba(32,36,42,.72)}
+    .nav a:hover{color:var(--accent)}
+    .header__cta{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:30px;border:1px solid transparent;font-size:14px;font-weight:800;letter-spacing:-.01em;transition:.2s ease;cursor:pointer;white-space:nowrap}
+    .btn--primary{background:var(--accent);color:#fff;box-shadow:0 14px 36px rgba(155,27,50,.22)}
+    .btn--primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+    .btn--ghost{background:rgba(255,255,255,.70);border-color:rgba(32,36,42,.14);color:var(--text);box-shadow:none}
+    .btn--ghost:hover{border-color:rgba(155,27,50,.28);color:var(--accent);background:#fff;transform:translateY(-1px)}
+    .btn--light{background:#fff;color:var(--accent);border-color:rgba(255,255,255,.40)}
+    .kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:8px 14px;border:1px solid rgba(155,27,50,.16);border-radius:999px;background:#fff;color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    .kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+    .hero{position:relative;overflow:hidden;padding:64px 0 42px}
+    .hero:before{content:"";position:absolute;right:-210px;top:40px;width:640px;height:640px;background:linear-gradient(135deg,rgba(155,27,50,.12),rgba(212,160,82,.10));clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);z-index:0}
+    .hero:after{content:"";position:absolute;left:-180px;bottom:-260px;width:520px;height:520px;background:rgba(155,27,50,.06);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);z-index:0}
+    .hero__grid{position:relative;z-index:1;display:block;max-width:860px}
+    .hero h1{margin:0;font-size:clamp(42px,6vw,78px);line-height:.94;letter-spacing:-.075em;font-weight:950}
+    .hero__lead{max-width:680px;margin:24px 0 0;font-size:21px;line-height:1.45;color:rgba(32,36,42,.72);letter-spacing:-.03em}
+    .hero__actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+    .hero__hint{margin-top:18px;font-size:14px;color:rgba(32,36,42,.56);max-width:560px}
+    .ad-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;max-width:720px}
+    .chip{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid rgba(32,36,42,.10);font-size:13px;font-weight:800;color:rgba(32,36,42,.68)}
+    .visual-card{position:relative;min-height:566px;padding:28px;border-radius:34px;background:rgba(255,255,255,.72);box-shadow:var(--shadow);border:1px solid rgba(32,36,42,.08);overflow:hidden}
+    .visual-card:before{content:"";position:absolute;inset:auto -90px -110px auto;width:360px;height:360px;background:rgba(155,27,50,.10);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+    .visual-title{position:relative;z-index:1;font-size:17px;font-weight:950;letter-spacing:-.03em;margin-bottom:20px}
+    .flow{position:relative;z-index:1;display:grid;gap:14px}
+    .flow-card{position:relative;padding:18px 18px 18px 58px;border-radius:24px;background:#fff;border:1px solid rgba(32,36,42,.08);box-shadow:0 12px 34px rgba(32,20,24,.06)}
+    .flow-card b{display:block;font-size:16px;letter-spacing:-.03em;margin-bottom:4px}
+    .flow-card span{display:block;color:var(--muted);font-size:14px}
+    .flow-num{position:absolute;left:16px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+    .flow-arrow{display:flex;justify-content:center;color:rgba(155,27,50,.55);font-weight:900;font-size:20px;margin:-2px 0}
+    .mini-panel{position:relative;z-index:1;margin-top:18px;padding:18px;border-radius:24px;background:var(--dark);color:#fff}
+    .mini-panel__label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);font-weight:900}
+    .mini-panel__text{margin-top:8px;font-size:20px;line-height:1.18;font-weight:950;letter-spacing:-.05em}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:40px;align-items:end;margin-bottom:44px}
+    .section h2{margin:0;font-size:clamp(34px,4vw,58px);line-height:1;letter-spacing:-.06em;font-weight:950}
+    .section-head p{margin:0;color:var(--muted);font-size:18px;line-height:1.5;letter-spacing:-.02em}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{padding:28px;border-radius:30px;background:#fff;border:1px solid rgba(32,36,42,.08);box-shadow:var(--soft-shadow)}
+    .card__icon{width:42px;height:42px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:950;margin-bottom:22px}
+    .card h3{margin:0 0 10px;font-size:22px;line-height:1.12;letter-spacing:-.045em}
+    .card p{margin:0;color:var(--muted);font-size:15px}
+    .quote{padding:46px;border-radius:38px;background:var(--dark);color:#fff;display:grid;grid-template-columns:1fr;gap:42px;align-items:center;overflow:hidden;position:relative}
+    .quote:before{content:"";position:absolute;right:-110px;top:-130px;width:360px;height:360px;background:rgba(155,27,50,.45);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+    .quote__text{position:relative;z-index:1;margin:0;font-size:clamp(29px,4vw,54px);line-height:1.02;letter-spacing:-.065em;font-weight:950}
+    .quote__side{position:relative;z-index:1;color:rgba(255,255,255,.68);font-size:18px;line-height:1.45}
+    .quote__side b{display:block;color:#fff;margin-bottom:10px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+    .logic{padding:34px;border-radius:34px;background:#fff;box-shadow:var(--soft-shadow);border:1px solid rgba(32,36,42,.08)}
+    .logic h3{margin:0 0 18px;font-size:27px;line-height:1.08;letter-spacing:-.055em}
+    .steps{display:grid;gap:12px;margin-top:20px}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:16px;border-radius:22px;background:rgba(246,247,248,.86);border:1px solid rgba(32,36,42,.06)}
+    .step b:first-child{width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid rgba(155,27,50,.18);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:13px}
+    .step strong{display:block;font-size:16px;letter-spacing:-.025em}
+    .step span{display:block;margin-top:2px;color:var(--muted);font-size:14px}
+    .integrations{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .integration{padding:22px;border-radius:26px;background:#fff;border:1px solid rgba(32,36,42,.08);min-height:142px}
+    .integration b{display:block;font-size:18px;letter-spacing:-.035em;margin-bottom:9px}
+    .integration span{display:block;color:var(--muted);font-size:14px}
+    .tag-cloud{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .tag{display:inline-flex;border-radius:999px;border:1px solid rgba(32,36,42,.10);background:rgba(246,247,248,.8);padding:7px 10px;font-size:12px;font-weight:800;color:rgba(32,36,42,.62)}
+    .dark-section{background:var(--dark);color:#fff;border-radius:48px;margin:0 24px;padding:86px 0;overflow:hidden;position:relative}
+    .dark-section:before{content:"";position:absolute;right:-160px;bottom:-180px;width:520px;height:520px;background:rgba(155,27,50,.25);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+    .dark-section .section-head p,.dark-section .card p{color:rgba(255,255,255,.62)}
+    .dark-section .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.10);box-shadow:none;color:#fff}
+    .dark-section .card__icon{background:rgba(255,255,255,.10);color:#fff}
+    .formats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1}
+    .format{padding:26px;border-radius:30px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11)}
+    .format small{display:block;color:var(--gold);font-weight:950;letter-spacing:.07em;text-transform:uppercase;margin-bottom:14px}
+    .format h3{margin:0 0 10px;font-size:21px;line-height:1.08;letter-spacing:-.045em}
+    .format p{margin:0;color:rgba(255,255,255,.65);font-size:14px}
+    .industries{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .industry{padding:24px;border-radius:28px;background:#fff;border:1px solid rgba(32,36,42,.08)}
+    .industry b{display:block;font-size:18px;letter-spacing:-.035em;margin-bottom:6px}
+    .industry span{color:var(--muted);font-size:14px}
+    .industries--visual{gap:18px}
+    .industries--visual .industry{padding:0;overflow:hidden;display:flex;flex-direction:column;min-height:340px}
+    .industry__image{height:154px;position:relative;background:linear-gradient(135deg,rgba(155,27,50,.12),rgba(212,160,82,.14));border-bottom:1px solid rgba(32,36,42,.08);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .industry__image:before{content:"";position:absolute;width:190px;height:190px;background:rgba(255,255,255,.55);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);transform:rotate(0deg)}
+    .industry__image:after{content:"";position:absolute;width:88px;height:88px;border:1px solid rgba(155,27,50,.16);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);transform:translate(46px,20px)}
+    .industry__shape{position:relative;z-index:2;width:82px;height:82px}
+    .industry__shape--cabinet{border:5px solid rgba(32,36,42,.72);border-radius:18px;background:linear-gradient(90deg,transparent 49%,rgba(32,36,42,.72) 50%,transparent 51%)}
+    .industry__shape--cabinet:before,.industry__shape--cabinet:after{content:"";position:absolute;top:36px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+    .industry__shape--cabinet:before{left:26px}.industry__shape--cabinet:after{right:26px}
+    .industry__shape--window{border:5px solid rgba(32,36,42,.72);border-radius:16px;background:linear-gradient(90deg,transparent 47%,rgba(32,36,42,.72) 48%,rgba(32,36,42,.72) 52%,transparent 53%),linear-gradient(0deg,transparent 47%,rgba(32,36,42,.72) 48%,rgba(32,36,42,.72) 52%,transparent 53%)}
+    .industry__shape--stairs{width:96px;height:78px;background:linear-gradient(135deg,transparent 0 18%,rgba(32,36,42,.74) 19% 26%,transparent 27% 36%,rgba(32,36,42,.74) 37% 44%,transparent 45% 54%,rgba(32,36,42,.74) 55% 62%,transparent 63%);border-bottom:5px solid rgba(32,36,42,.74)}
+    .industry__shape--ring{border:6px solid rgba(32,36,42,.74);border-radius:50%}
+    .industry__shape--ring:before{content:"";position:absolute;left:21px;top:-20px;width:28px;height:28px;background:var(--accent);transform:rotate(45deg);border-radius:6px}
+    .industry__shape--cube{clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);background:rgba(32,36,42,.76)}
+    .industry__shape--cube:before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.42);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+    .industry__shape--lamp{width:88px;height:88px}
+    .industry__shape--lamp:before{content:"";position:absolute;left:20px;top:0;width:48px;height:38px;border-radius:18px 18px 10px 10px;background:rgba(32,36,42,.76)}
+    .industry__shape--lamp:after{content:"";position:absolute;left:42px;top:36px;width:5px;height:42px;background:rgba(32,36,42,.76);box-shadow:-18px 42px 0 5px rgba(32,36,42,.76),18px 42px 0 5px rgba(32,36,42,.76)}
+    .industry__body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+    .industry__button{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:30px;border:1px solid rgba(155,27,50,.18);background:rgba(155,27,50,.06);color:var(--accent);font-size:13px;font-weight:900}
+    .industry__button:hover{background:var(--accent);color:#fff}
+    .metric--featured{background:var(--dark);color:#fff;border-color:rgba(255,255,255,.12);transform:translateY(-8px);box-shadow:0 28px 70px rgba(32,20,24,.18)}
+    .metric--featured b{color:#fff}
+    .metric--featured span{color:rgba(255,255,255,.72)}
+    .split--audience{align-items:stretch}
+    .logic--accent{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+    .logic--accent:before{content:"";position:absolute;right:-92px;top:-100px;width:260px;height:260px;background:rgba(155,27,50,.34);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+    .logic--accent h3,.logic--accent p,.logic--accent a{position:relative;z-index:1}
+    .logic--accent .logic__lead{margin:0;color:rgba(255,255,255,.74);font-size:20px;line-height:1.35;letter-spacing:-.03em}
+    .logic--accent .btn{margin-top:28px}
+
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .metric{padding:26px;border-radius:30px;background:#fff;border:1px solid rgba(32,36,42,.08);box-shadow:var(--soft-shadow)}
+    .metric b{display:block;font-size:30px;letter-spacing:-.07em;color:var(--accent);line-height:1}
+    .metric span{display:block;margin-top:9px;color:var(--muted);font-size:14px}
+    .faq{display:grid;gap:12px}
+    details{background:#fff;border:1px solid rgba(32,36,42,.08);border-radius:24px;padding:20px 22px;box-shadow:0 10px 26px rgba(32,20,24,.05)}
+    summary{cursor:pointer;font-weight:900;letter-spacing:-.02em}
+    details p{margin:12px 0 0;color:var(--muted)}
+    .cta{padding:58px;border-radius:42px;background:#fff;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:start;border:1px solid rgba(32,36,42,.08)}
+    .cta h2{margin:0;font-size:clamp(36px,4vw,62px);line-height:.98;letter-spacing:-.07em}
+    .cta p{margin:18px 0 0;color:var(--muted);font-size:18px;max-width:680px}
+    .form{display:grid;gap:12px}
+    .input{width:100%;height:50px;border:1px solid rgba(32,36,42,.12);border-radius:18px;background:#f8f8f8;padding:0 16px;color:var(--text)}
+    textarea.input{height:104px;padding-top:14px;resize:vertical}
+    .form .btn{width:100%}
+    .footer{padding:42px 0;color:rgba(32,36,42,.52);font-size:14px}
+    .footer__inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(32,36,42,.10);padding-top:24px}
+    @media(max-width:980px){
+      .nav{display:none}
+      .hero__grid,.section-head,.quote,.split,.cta{grid-template-columns:1fr}
+      .visual-card{min-height:auto}
+      .cards,.formats,.industries,.metrics,.integrations{grid-template-columns:1fr 1fr}
+      .dark-section{margin:0 12px;border-radius:34px}
+    }
+    @media(max-width:640px){
+      .container{width:min(100% - 28px,1180px)}
+      .section{padding:72px 0}
+      .header__inner{min-height:68px}
+      .header__cta .btn--ghost{display:none}
+      .btn{min-height:46px;padding:0 18px}
+      .hero{padding-top:44px}
+      .hero h1{font-size:46px}
+      .hero__lead{font-size:18px}
+      .cards,.formats,.industries,.metrics,.integrations{grid-template-columns:1fr}
+      .quote,.cta{padding:30px;border-radius:32px}
+      .visual-card{padding:20px;border-radius:28px}
+      .footer__inner{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">фабри<span class="logo__k">к</span>од</a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#benefits">Польза</a>
+        <a href="#ads">Реклама</a>
+        <a href="#connections">Интеграции</a>
+        <a href="#formats">Форматы</a>
+        <a href="#demo">Демо</a>
+      </nav>
+      <div class="header__cta">
+        <a class="btn btn--ghost" href="/login">Вход</a>
+        <a class="btn btn--primary" href="/signup">Регистрация</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div>
+          <div class="kicker">Интеграция</div>
+          <h1>Подключим конфигуратор к сайту и CRM</h1>
+          <p class="hero__lead">Чтобы клиент выбрал параметры, увидел понятную цену и попал в работу на производство как готовый заказ.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#demo">Обсудить интеграцию</a>
+          </div>
+          <div class="ad-strip" aria-label="Запросы и продукты">
+            <span class="chip">Tilda</span>
+            <span class="chip">WordPress</span>
+            <span class="chip">Битрикс24</span>
+            <span class="chip">amoCRM</span>
+            <span class="chip">1С</span>
+            <span class="chip">МойСклад</span>
+            <span class="chip">ЮKassa</span>
+            <span class="chip">API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <h2>Польза очевидна</h2>
+          <p>Конфигуратор сокращает путь клиента от интереса до заказа. Поэтому важно оценивать весь процесс: реклама, заявка, CRM, расчёт, спецификация, производство.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card__icon">01</div>
+            <h3>Меньше ручных уточнений</h3>
+            <p>Клиент сразу выбирает размеры, материалы, опции и ограничения. Менеджеру не нужно собирать заказ заново в переписке.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">02</div>
+            <h3>Быстрее расчёт и КП</h3>
+            <p>Цена, состав заказа и спецификация формируются по правилам вашего производства, а не вручную в таблице.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">03</div>
+            <h3>Чище аналитика рекламы</h3>
+            <p>Можно видеть не просто “лиды”, а какие заявки были квалифицированными, с какими параметрами и на какую сумму.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ads">
+      <div class="container">
+        <div class="quote">
+          <p class="quote__text">Контекстная реклама дорогая. Терять клиента после клика — ещё дороже.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="logic">
+          <h3>До интеграции</h3>
+          <div class="steps">
+            <div class="step"><b>1</b><div><strong>Клиент оставляет заявку</strong><span>“Хочу шкаф / дверь / украшение / деталь”. Параметры неполные.</span></div></div>
+            <div class="step"><b>2</b><div><strong>Менеджер всё уточняет вручную</strong><span>Материалы, размеры, опции, сроки, ограничения, фото, файлы.</span></div></div>
+            <div class="step"><b>3</b><div><strong>Цена считается отдельно</strong><span>В Excel, в голове, в 1С, в переписке или через нескольких сотрудников.</span></div></div>
+            <div class="step"><b>4</b><div><strong>Производство получает пересказ</strong><span>Часть данных теряется, часть уточняется повторно, часть попадает в ошибку.</span></div></div>
+          </div>
+        </div>
+        <div class="logic">
+          <h3>После интеграции</h3>
+          <div class="steps">
+            <div class="step"><b>1</b><div><strong>Клиент выбирает параметры на сайте</strong><span>Не просто “оставить телефон”, а собрать конкретный вариант заказа.</span></div></div>
+            <div class="step"><b>2</b><div><strong>Система считает и проверяет</strong><span>Цена, доступность опций, ограничения, логика производства.</span></div></div>
+            <div class="step"><b>3</b><div><strong>Заявка уходит в CRM</strong><span>В карточке уже есть параметры, сумма, комментарий, файлы и источник рекламы.</span></div></div>
+            <div class="step"><b>4</b><div><strong>Задание готово к работе</strong><span>Менеджер продаёт, а производство получает структурированную спецификацию.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="connections">
+      <div class="container">
+        <div class="section-head">
+          <h2>Подключаем к российскому рабочему контуру</h2>
+        </div>
+        <div class="integrations">
+          <article class="integration">
+            <b>Сайт и лендинги</b>
+            <span>Tilda, WordPress, 1С-Битрикс, самописные сайты, отдельные посадочные страницы.</span>
+            <div class="tag-cloud"><span class="tag">виджет</span><span class="tag">iframe</span><span class="tag">лендинг</span></div>
+          </article>
+          <article class="integration">
+            <b>CRM и продажи</b>
+            <span>Битрикс24, amoCRM, retailCRM, Telegram-уведомления и другие каналы заявки.</span>
+            <div class="tag-cloud"><span class="tag">лид</span><span class="tag">сделка</span><span class="tag">статус</span></div>
+          </article>
+          <article class="integration">
+            <b>Учёт и склад</b>
+            <span>1С, МойСклад, внутренние таблицы, остатки, справочники материалов и опций.</span>
+            <div class="tag-cloud"><span class="tag">справочник</span><span class="tag">SKU</span><span class="tag">остатки</span></div>
+          </article>
+          <article class="integration">
+            <b>Оплата и заказ</b>
+            <span>ЮKassa, Робокасса, CloudPayments, счёт, предоплата или заявка без онлайн-оплаты.</span>
+            <div class="tag-cloud"><span class="tag">оплата</span><span class="tag">счёт</span><span class="tag">предзаказ</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section" id="formats">
+      <div class="container">
+        <div class="section-head">
+          <h2>Разные форматы подключения</h2>
+        </div>
+        <div class="formats">
+          <article class="format">
+            <small>Быстрый старт</small>
+            <h3>Отдельная посадочная</h3>
+            <p>Запускаем страницу под рекламу с конфигуратором, формой заявки и передачей данных менеджеру.</p>
+          </article>
+          <article class="format">
+            <small>На текущий сайт</small>
+            <h3>Виджет или iframe</h3>
+            <p>Встраиваем конфигуратор в существующую страницу без полной переделки сайта.</p>
+          </article>
+          <article class="format">
+            <small>Глубокая связка</small>
+            <h3>API-интеграция</h3>
+            <p>Передаём параметры, цену, файлы и статусы между сайтом, CRM и внутренними системами.</p>
+          </article>
+          <article class="format">
+            <small>Продажи</small>
+            <h3>CRM-сценарий</h3>
+            <p>Настраиваем путь заявки: источник, квалификация, КП, оплата, спецификация и производство.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Для каких производств это особенно полезно</h2>
+          <p>Если заказ зависит от параметров, опций, материалов, размеров или файлов — обычной формы заявки недостаточно. Нужен управляемый путь создания заказа.</p>
+        </div>
+        <div class="industries industries--visual">
+          <article class="industry industry--furniture">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--cabinet"></div>
+            </div>
+            <div class="industry__body">
+              <b>Мебель на заказ</b>
+              <span>Шкафы, кухни, тумбы, гардеробные, встроенные решения.</span>
+              <a class="industry__button" href="prebuilt-configurators.html">Перейти в раздел</a>
+            </div>
+          </article>
+
+          <article class="industry industry--windows">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--window"></div>
+            </div>
+            <div class="industry__body">
+              <b>Окна, двери, СПК</b>
+              <span>Порталы, алюминиевые конструкции, нестандартные размеры.</span>
+              <a class="industry__button" href="doors.html">Перейти в раздел</a>
+            </div>
+          </article>
+
+          <article class="industry industry--stairs">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--stairs"></div>
+            </div>
+            <div class="industry__body">
+              <b>Лестницы и ограждения</b>
+              <span>Материалы, геометрия, покрытие, монтажные условия.</span>
+              <a class="industry__button" href="stairs.html">Перейти в раздел</a>
+            </div>
+          </article>
+
+          <article class="industry industry--jewelry">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--ring"></div>
+            </div>
+            <div class="industry__body">
+              <b>Ювелирные изделия</b>
+              <span>Модель, металл, камни, гравировка, размер, производство.</span>
+              <a class="industry__button" href="jewelry.html">Перейти в раздел</a>
+            </div>
+          </article>
+
+          <article class="industry industry--printing">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--cube"></div>
+            </div>
+            <div class="industry__body">
+              <b>3D-печать и детали</b>
+              <span>Модель, материал, объём, постобработка, сроки.</span>
+              <a class="industry__button" href="3d-printing.html">Перейти в раздел</a>
+            </div>
+          </article>
+
+          <article class="industry industry--interior">
+            <div class="industry__image" aria-hidden="true">
+              <div class="industry__shape industry__shape--lamp"></div>
+            </div>
+            <div class="industry__body">
+              <b>Предметы интерьера</b>
+              <span>Светильники, панели, декор, мебельные детали и нестандартные изделия.</span>
+              <a class="industry__button" href="prebuilt-configurators.html">Перейти в раздел</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Что можно измерять после запуска</h2>
+        </div>
+        <div class="metrics">
+          <div class="metric"><b>лиды</b><span>сколько заявок пришло с конкретной рекламы и посадочных страниц</span></div>
+          <div class="metric"><b>сумма</b><span>какой потенциальный объём заказов был сформирован клиентами</span></div>
+          <div class="metric"><b>КП</b><span>сколько заявок дошло до коммерческого предложения</span></div>
+          <div class="metric metric--featured"><b>сделки</b><span>какие связки рекламы реально приводят к продажам</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Частые вопросы</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Нужно ли менять текущий сайт?</summary>
+            <p>Не всегда. Можно начать с отдельной посадочной страницы, виджета или iframe-блока. Полная переделка сайта нужна только если текущая структура мешает продажам.</p>
+          </details>
+          <details>
+            <summary>Можно ли подключить к Битрикс24 или amoCRM?</summary>
+            <p>Да, сценарий обычно строится вокруг передачи структурированной заявки: параметры, сумма, источник рекламы, комментарии, файлы и статус.</p>
+          </details>
+          <details>
+            <summary>Можно ли не показывать точную цену сразу?</summary>
+            <p>Да. Можно показывать диапазон, предварительную оценку или собирать заявку для ручной проверки. Это подходит, если цена зависит от сложных производственных условий.</p>
+          </details>
+          <details>
+            <summary>Подходит ли это для контекстной рекламы?</summary>
+            <p>Да, особенно если реклама ведёт на запросы с намерением “рассчитать”, “заказать”, “цена”, “под размер”, “на заказ”. Конфигуратор помогает быстрее превратить такой трафик в квалифицированную заявку.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="for-whom">
+      <div class="container">
+        <div class="section-head">
+          <h2>Для кого эта интеграция</h2>
+        </div>
+
+        <div class="split split--audience">
+          <div class="logic">
+            <h3>Подходит, если у вас уже есть</h3>
+            <div class="steps">
+              <div class="step"><b>1</b><div><strong>Сайт или посадочная страница</strong><span>Вы уже получаете трафик из Директа, SEO, соцсетей или рекомендаций.</span></div></div>
+              <div class="step"><b>2</b><div><strong>Ручной расчёт заказов</strong><span>Цена зависит от размеров, материалов, опций, комплектации или файлов клиента.</span></div></div>
+              <div class="step"><b>3</b><div><strong>CRM или таблица заявок</strong><span>Менеджеры ведут сделки, но параметры заказа часто приходится уточнять повторно.</span></div></div>
+              <div class="step"><b>4</b><div><strong>Передача в производство</strong><span>После продажи нужно сформировать понятную спецификацию, а не свободный текст из переписки.</span></div></div>
+            </div>
+          </div>
+
+          <div class="logic logic--accent">
+            <h3>Познакомьте клиентов с конфигуратором</h3>
+            <p class="logic__lead">Это удобно.</p>
+            <div style="margin-top:24px">
+              <a class="btn btn--primary" href="prebuilt-configurators.html">Перейти на страницу конфигуратора</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Запросить демо</h2>
+            <p>Покажите текущий сайт, CRM и путь заявки. Мы предложим формат: отдельная посадочная, виджет, iframe, API или интеграция с CRM и производственными данными.</p>
+            <div class="ad-strip">
+              <span class="chip">сайт</span>
+              <span class="chip">CRM</span>
+              <span class="chip">реклама</span>
+              <span class="chip">цена</span>
+              <span class="chip">спецификация</span>
+              <span class="chip">производство</span>
+            </div>
+          </div>
+          <form class="form" action="mailto:info@fabrikod.ru" method="post" enctype="text/plain">
+            <input class="input" name="name" placeholder="Ваше имя" />
+            <input class="input" name="contact" placeholder="Телефон или Telegram" />
+            <input class="input" name="site" placeholder="Сайт или ниша производства" />
+            <textarea class="input" name="task" placeholder="Что нужно подключить: сайт, CRM, оплату, 1С, МойСклад, Telegram..."></textarea>
+            <button class="btn btn--primary" type="submit">Обсудить интеграцию</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© фабрикод</div>
+      <div>Конфигуратор → заявка → CRM → спецификация → производство</div>
+    </div>
+  </footer>
+</body>
+</html>
